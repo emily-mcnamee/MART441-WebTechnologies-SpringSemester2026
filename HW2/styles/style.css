@@ -1,3 +1,5 @@
+/* READ ME: Most of these custom classes and elements were copied from previous coding projects and re-done for this project instead.*/
+
 * {
     color: #f3f3f3;
     font-family: Arial, Helvetica, sans-serif;
@@ -9,6 +11,8 @@ p {
     font-size: 23px;
 }
 
+/*Background Design*/
+
 #checkerboard {
   background-color: #575757; /* Light background color */
   background-image: 
@@ -16,10 +20,40 @@ p {
   linear-gradient(-45deg, #222324 25%, transparent 25%),
   linear-gradient(45deg, transparent 75%, #222324 75%),
   linear-gradient(-45deg, transparent 75%, #222324 75%);
-  background-size: 150px 150px;
-  min-height: 100%; /* Full viewport height */
+  background-size: 190px 190px;
+  min-height: 100vh; /* Full viewport height */
+  display:flex;
   justify-content: center;
-  align-items: center;
   color: white;
   text-align: center;
+
+/* Parallax scrolling animation */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+/*Customized container design, it looks complicated but it's just the individual Bootstrap CSS container classes copied and pasted for individual customization*/
+
+.text-container {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.7) 25%, /* Darker at the top */
+    rgba(0, 0, 0, 0.5) 50% /* Lighter at the bottom */
+  );
+  padding: 20px;
+  border-radius: 8px;
+  color: rgb(209, 214, 224);
+  max-width: 80%;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+
+/*Custom image border*/
+.customimg {
+  border-style: outset;
+  border-color: #f3f3f3;
+  border-width: 5px;
+  border-radius: 0.50rem;
 }
