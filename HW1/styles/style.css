@@ -21,6 +21,7 @@ p {
   linear-gradient(45deg, transparent 75%, #222324 75%),
   linear-gradient(-45deg, transparent 75%, #222324 75%);
   background-size: 190px 190px;
+  background-position: 0 0;
   min-height: 100vh; /* Full viewport height */
   display:flex;
   justify-content: center;
