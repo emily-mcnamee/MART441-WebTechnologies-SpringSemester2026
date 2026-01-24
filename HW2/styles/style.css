@@ -1,0 +1,15 @@
+
+#checkerboard {
+  background-color: #575757; /* Light background color */
+  background-image: 
+  linear-gradient(45deg, #222324 25%, transparent 50%),
+  linear-gradient(-45deg, #222324 25%, transparent 25%),
+  linear-gradient(45deg, transparent 75%, #222324 75%),
+  linear-gradient(-45deg, transparent 75%, #222324 75%);
+  background-size: 150px 150px;
+  min-height: 100%; /* Full viewport height */
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
