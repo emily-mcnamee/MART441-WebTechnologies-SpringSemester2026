@@ -8,7 +8,16 @@
     
 p {
     color: #f3f3f3; 
-    font-size: 23px;
+    font-size: larger;
+    text-align: center;
+}
+
+h1{
+
+}
+
+h2{
+
 }
 
 /*Background Design*/
@@ -57,4 +66,10 @@ p {
   border-color: #f3f3f3;
   border-width: 5px;
   border-radius: 0.50rem;
+}
+
+.imgcaption{
+  font-family: Helvetica;
+  font-size: 1.2em;
+  color: #f3f3f3
 }
