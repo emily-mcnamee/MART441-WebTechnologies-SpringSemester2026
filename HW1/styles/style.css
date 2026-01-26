@@ -1,4 +1,4 @@
-/* READ ME: Most of these custom classes and elements were copied from previous coding projects and re-done for this project instead.*/
+/* READ ME: Most of these custom classes and elements were copied from previous coding projects and re-done for this project.*/
 
 * {
     color: #f3f3f3;
@@ -10,18 +10,8 @@ p {
     color: #f3f3f3; 
     font-size: larger;
     text-align: center;
-}
-
-h1{
-
-}
-
-h2{
-
-}
-
+    
 /*Background Design*/
-
 #checkerboard {
   background-color: #575757; /* Light background color */
   background-image: 
@@ -68,6 +58,7 @@ h2{
   border-radius: 0.50rem;
 }
 
+/*Custom font for images*/
 .imgcaption{
   font-family: Helvetica;
   font-size: 1.2em;
