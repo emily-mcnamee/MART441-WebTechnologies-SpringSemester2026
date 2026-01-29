@@ -1,13 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US" data-bs-theme="dark">
+
+<!-- metadata for page -->
   <head>
-    <title>Hello World Example</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Webpage for Emily McNamee's ">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>McNamee's 441 Site</title>
+
+    <!--This Webpage uses Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!--Website's Customized Style Sheet-->
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
+
+    <style>
+      html, body {
+        margin:0;
+        height:100%;
+
+    /* Author: Emily "Quinn" McNamee
+    File Name: script.js for index.html
+    Date: 1/28/2026
+    Purpose: Moved the background-color tag from the custom class [checkerboard] into the HTML <style> element */
+        background-color: #575757; 
+      }
+
+    /* <!--Author: Emily "Quinn" McNamee
+    File Name: script.js for index.html
+    Date: 1/28/2026
+    Purpose: Carried exercise button functionality into homeowork assignment*/
+      button{
+        padding: 10px;
+        font-size: 16px;
+    
+      }
+
+    </style>
+
   </head>
+
   <body>
 
-    <h1>My First JavaScript Page</h1>
-
-    <script src="script.js"></script>
+    <!--Webpage text-->
+    <span>
     
+    <!--Author: Emily "Quinn" McNamee
+    File Name: script.js for index.html
+    Date: 1/28/2026
+    Purpose: Custom tag [checkerboard] has been removed as the <body>'s id and instead moved into a <div> id where the rest of the webpage's <span> is written inside.-->
+
+    <div id="checkerboard">
+
+      <!--Header-->
+      <div class="container-fluid bg-dark-subtle">
+      <br>
+      <h1>My 441 WebPage</h1>
+      <p>This site contains Emily McNamee's work for MART 441 - Homework 2 - Javascript and the Web Console.</p>
+      <br>
+      </div>
+
+      <br>
+
+      <div class="container-sm customBG" style="height: 80vh;">
+        <br>
+        <br>
+        <h1>Hello Web :></h1>
+
+        <hr style="max-width:50%;margin:auto;">
+
+        <br><br><br><br><br><br><br><br><br><br>
+
+        <p>Open the console to see what I have!</p>
+        <button>Click Me!</button>
+
+      </div>
+
+      <br>
+
+      <!--Author: Emily "Quinn" McNamee
+      File Name: script.js for index.html
+      Date: 1/28/2026
+      Purpose: Created a fun pattern to keep showing off the background parallax scroll
+      -->
+
+      <div class="container-fluid bg-black" style="height: 15vh;"></div>
+
+      <br>
+
+      <div class="container-fluid customBG" style="height: 15vh;"></div>
+      
+      <br>
+      
+      <div class="container-fluid" style="height: 15vh; background-color:#dcdbd8"></div>
+
+      <br>
+
+      <div class="container-fluid customBG" style="height: 15vh;"></div>
+
+
+    </div>
+
+    </span>
+
+    <!--Author: Emily "Quinn" McNamee
+    File Name: script.js for index.html
+    Date: 1/28/2026
+    Purpose: Added the HTML's custom javascript link
+    -->
+      <script src="script.js"></script>
+
   </body>
+
 </html>

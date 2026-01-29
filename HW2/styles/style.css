@@ -1,0 +1,53 @@
+/*
+Author: Emily "Quinn" McNamee
+File Name: script.js for index.html
+Date: 1/28/2026
+Purpose: To explain comments
+
+READ ME: Most of these custom classes and elements were copied from previous coding projects and re-done for this project.
+*/
+
+
+* {
+    color: #f3f3f3;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal; 
+}
+    
+p {
+    color: #f3f3f3; 
+    font-size: x-large;
+    text-align: center;
+}
+/*Background Design*/
+#checkerboard {
+
+  background-image: 
+  linear-gradient(45deg, #222324 25%, transparent 50%),
+  linear-gradient(-45deg, #222324 25%, transparent 25%),
+  linear-gradient(45deg, transparent 75%, #222324 75%),
+  linear-gradient(-45deg, transparent 75%, #222324 75%);
+  background-size: 190px 190px;
+  background-position: 0 0;
+  min-height: 100vh; /* Full viewport height */
+  justify-content: center;
+  color: white;
+  text-align: center;
+
+/* Parallax scrolling animation */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+/*Customized container design, it looks complicated but it's just the individual Bootstrap CSS container classes copied and pasted for individual customization*/
+
+.customBG {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.7) 25%, /* Darker at the top */
+    rgba(0, 0, 0, 0.5) 50% /* Lighter at the bottom */
+  );
+
+}
+
