@@ -19,9 +19,9 @@ console.log("Hades, Crusader Kings 3, and WarFrame")
 
 // Three favorite artists
 console.log("My three favorite artists are:")
-console.log("• Jorge Rivera-Herrans, as he composed EPIC: The Musical, a modern retelling of Homer's The Odyssey in a musical medium")
-console.log("• bbn0$, for not only does he make really good modern hip hop, but he also frequently commissions artists to animate to his songs; cultivating an incredibly artistically inspired community")
-console.log("• Hayao Miyazaki, the artist, filmaker, and co-founder of Studio Ghibli. I grew up on the whimsy of those films, as did my siblings. Very fond memories are centered around my family watching Howl's Moving Castle and Spirited Away together.")
+console.log("• Jorge Rivera-Herrans, as he composed EPIC: The Musical - a modern retelling of Homer's The Odyssey in a musical medium")
+console.log("• bbn0$ - for not only does he make really good modern hip hop, but he also frequently commissions artists to animate to his songs; cultivating an incredibly artistically inspired community")
+console.log("• Hayao Miyazaki - the artist, filmmaker, and co-founder of Studio Ghibli. I grew up on the whimsy of those films, as did my siblings. Very fond memories are centered around my family watching Howl's Moving Castle and Spirited Away together.")
 
 //Console will say "Button was clicked!" upon clicking the 'Click Me!' Button
   console.log("Page loaded");
