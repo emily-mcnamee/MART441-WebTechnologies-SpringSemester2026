@@ -1,6 +1,6 @@
 # Webpage and code created for MART441 - Homework 2
 
-## Reflection Questtions:
+### Reflection Questions:
 <p>I created a simple yet aesthetically pleasing front page who's code and design was borrowed and re-fashioned from my Homework 1 webpage. I chose this decision not only to save on time, but to also go back and improve on the code as a side project; as well as applying what I learned this week into my own code work. The webpage also let the viewer know to open the console.log to view the rest of its contents.<br>
 
 Microsoft Copilot created something very similar to what I created, alebit with a simply one-color front page (as was asked in the prompt, which was simply the homework directions copy and pasted) and a different user interaction question. <br>
