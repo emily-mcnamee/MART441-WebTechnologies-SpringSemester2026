@@ -8,16 +8,27 @@ READ ME: Most of these custom classes and elements were copied from previous cod
 */
 
 
-* {
+*, *::before, *::after{
+    box-sizing: border-box;
     color: #f3f3f3;
     font-family: Arial, Helvetica, sans-serif;
     font-style: normal; 
 }
-    
-p {
-    color: #f3f3f3; 
-    font-size: x-large;
-    text-align: center;
+  /*02052026: moved html, body styles into stylesheet to clean up html head*/
+body {
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #575757;
+}
+
+.textCon {
+  width: 800px;
+  max-width: 80%;
+  background-color: black;
+  padding: 10px;
+  border-radius: 5px;
 }
 /*Background Design*/
 #checkerboard {
@@ -30,7 +41,6 @@ p {
   background-size: 190px 190px;
   background-position: 0 0;
   min-height: 100vh; /* Full viewport height */
-  justify-content: center;
   color: white;
   text-align: center;
 
@@ -40,14 +50,12 @@ p {
   background-repeat: repeat;
 }
 
-/*Customized container design, it looks complicated but it's just the individual Bootstrap CSS container classes copied and pasted for individual customization*/
 
 .customBG {
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0.7) 25%, /* Darker at the top */
-    rgba(0, 0, 0, 0.5) 50% /* Lighter at the bottom */
+    rgba(0, 0, 0, 0.5) 75% /* Lighter at the bottom */
   );
-
 }
 
