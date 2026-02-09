@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+
+body {
+  background-color: #0b1d13;
+  color: #f0f0e6;
+  font-family: 'IM Fell English SC', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#game {
+  background-color: #1e3528;
+  padding: 20px;
+  width: 400px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 20px black;
+}
+
+#sceneImage {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: #3a6b4f;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+button:hover {
+  background-color: #4f8b68;
+}

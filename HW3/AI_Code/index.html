@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Lost Forest</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="game">
+    <h1>The Lost Forest</h1>
+
+    <img id="sceneImage" src="forest.jpg" alt="Forest scene">
+
+    <p id="story">
+      You wake up in a mysterious forest. The trees whisper in the wind, and three paths lie ahead.
+    </p>
+
+    <div id="choices">
+      <button onclick="choosePath(1)">Take the dark path</button>
+      <button onclick="choosePath(2)">Follow the river</button>
+      <button onclick="choosePath(3)">Climb the hill</button>
+    </div>
+
+    <p id="score">Courage: 0</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -2,4 +2,6 @@
 
 ### Reflection Questions:
 
+ChatGPT created a simple text adventure, where all three choices are consistently availible to you; what changes on the DOM is the amount of 'courage' you gain by visiting each location. While aesthetically I do like ChatGPT's version, there is a striking lack of substance to the game. The 'courage' variable is also a bit non-sensicle, if I went with this version, I would have most likely expanded upon the choices you can do for each location, as well as gaining more courage depending on the "level" of decision, or losing courage by choosing to not take a decision. ChatGPT however produce a generation that I think someone could easily be expanded upon with simple alterations.
+
 Errors: At first I had labeled both 'choice' scripts as both 'choice1', making the console send a TypeError report about an innerHTML being 'null'. I thought this meant that I forgot to do something that caused the .innerHTML part of the "document.getElementById("choice1").innerHTML" line of code to work. After about half an hour of glaring at the cheatsheet and my own code, I finally found my mistake and it ran smooth. That sucked.
