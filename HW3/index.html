@@ -36,16 +36,17 @@
       <!--Author: Emily "Quinn" McNamee
       Date: 2/5/2026 
       Purpose: Changed main contents to match Homework 3's activity, also added boostrap classes to cause the text inside to be centered within the container at all times-->
-      <div class="container-sm customBG d-flex justify-content-center align-items-center" style="height: 80vh; display: flex;">
+      <div class="container-sm customBG d-flex justify-content-center align-items-center" style="height: 100vh; display: flex;">
+        
         <div class="text-center textCon">
-
+          <img src="./images/CAVE.jpg" class="img-fluid rounded mx-auto d-block">
         <!--2052026: Stacked the div inside the original container so contents are still changed by Bootstrap css
         story id = enables the game to update depending on the choices the player makes-->
-        
+          <br>
           <div id="story">
             You've been lost in this glacial cave for a very long time, barely able to see ahead a few feet. You see the walls split left or right.
           </div>
-          <br>
+
           <!--storyFunction (1) and (2) are connected to the game js's storyFunction (choice), with the (1) and (2) being choice1 and choice2-->
           <!--MAKE SURE VARIABLES HERE ARE CORRECTLY MATCHED TO JS. WILL GIVE AN INNERHTML TYPEERROR IF NOT-->
           <button id="choice1" onclick="storyFunction(1);">Left</button>
@@ -53,6 +54,19 @@
 
         </div>
       </div>
+
+      <div class="container-fluid bg-black" style="height: 5vh;"></div>
+      
+
+      
+      <div class="container-fluid" style="height: 5vh; background-color:#dcdbd8"></div>
+
+
+
+      <div class="container-fluid customBG" style="height: 5vh;"></div>
+
+
+    </div>
 
     </span>
 

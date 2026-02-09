@@ -12,7 +12,8 @@ READ ME: Most of these custom classes and elements were copied from previous cod
     box-sizing: border-box;
     color: #f3f3f3;
     font-family: Arial, Helvetica, sans-serif;
-    font-style: normal; 
+    font-style: normal;
+    font-size: 25px; 
 }
   /*02052026: moved html, body styles into stylesheet to clean up html head*/
 body {
@@ -24,7 +25,7 @@ body {
 }
 
 .textCon {
-  width: 800px;
+  width: 80%;
   max-width: 80%;
   background-color: black;
   padding: 10px;
