@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script>
+      // I am defining my method here
+     /* function getARandomNumber() {
+        //document.write(Math.random());
+
+        var randNumber = Math.random();
+        document.write(Math.floor(randNumber * 10));
+        /*Notes:
+        This time, we add a couple of new things. First, Math.random() returns something between 0 and 1. Then we multiply by 10. If Math.random() returns 0.83302, multiplying by 10 gives 8.3302. Still a decimal though, so we use Math.floor() to round down to a whole number.
+      } */
+
+         // I am defining my method here
+      function getARandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min; //pick a number between 5 and 10)
+      }
+    </script>
+  </head>
+
+  <body>
+    <script>
+      // getARandomNumber(); // remember I am calling my method here
+
+    document.write(getARandomNumber(5, 10)); // remember I am calling my method here
+</script>
+  </body>
+</html>

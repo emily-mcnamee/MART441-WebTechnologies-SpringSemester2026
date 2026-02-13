@@ -1,0 +1,93 @@
+
+console.log("something to print");
+
+prompt("something to say in a popup box");
+
+document.write("print something to the DOM");
+
+window.alert("Hi there!");
+
+
+Functions:
+Functions are called by using their name followed by the function operator:
+
+doSomething();
+
+
+You can pass information into a function using parameters:
+
+doSomething(param1, param2);
+
+
+The most common way to define a function uses the function keyword, followed by:
+
+A function name
+A list of parameters (comma-separated)
+A block of JavaScript statements inside { }
+
+
+Comparison Operators:
+< , > , <= ,  >= , == , !=
+
+
+Logical Operators:
+or - ||
+and - &&
+not - !
+
+"If its rainy outside AND below 60 degrees, wear a jacket AND some boots"
+
+"If its rainy outside OR below 66 degrees, wear a jacket"
+
+
+The else block runs when the if condition is false.
+
+
+You can evaluate multiple conditions at once using logical operators like && (AND) and || (OR).
+
+
+Here’s the important idea: if you write multiple separate if statements, each one is evaluated. That can cause multiple messages to print when you only want one.
+
+Problem example: temperature -1 is less than 0, 10, 20, and 30… so multiple messages print.
+
+The fix is to use else if. Once one condition is true, the rest are skipped. Cleaner code, less extra processing.
+
+
+A switch statement is another way to keep code clean when you are checking for equality (typically with whole numbers or strings). It uses case blocks and usually needs break so it doesn’t “fall through” into the next case.
+
+Switch statements are best when:
+
+You are checking for exact matches (like temperature === 10) (ex: menus)
+You have many “equal to” branches
+
+(remember to end each statement with a 'break;' otherwise it will continue running through statements until it hits the next break;)
+
+
+Looping:
+
+For loops are pretty standard in most programming languages. They have a beginning, evaluation, and then an increment (or decrement — we won’t worry about that right now).
+
+For loops are useful when you know how many times you want to repeat something. The while loop is a little different.
+
+
+The while loop is different from the for loop in that all that is present is the evaluation part. There is no built-in initialization or increment/decrement. While loops are handy when you need to keep executing until something becomes false.
+
+
+The do-while is a special looping structure that always executes the block at least one time. Now, I hope you are asking yourself, why would I want it to do that?
+
+Think about playing a game or opening software: what’s the first thing you see? Usually, a menu. A do-while loop often displays menu systems because you want the menu to show at least once before the user decides whether to keep going.
+
+Math Objects:
+
+Random is one of the most common math functions used because coming up with random numbers is hard to do.
+
+Math.abs() is a good one to have in your back pocket because it gives you the absolute value. That means if you subtract two numbers and take the absolute value, it will always be positive.
+
+PI (π) is the ratio of a circle’s circumference to its diameter. It’s a constant number, meaning it stays the same for all circles. You don’t have to memorize it — you can use Math.PI to get its value.
+
+Math.round() performs rounding for you (so you don’t have to write an if statement).
+
+The power function is useful because in programming there isn’t a simple “power” operator like you might remember from math class. (The ^ symbol in programming often means something else.) So we use Math.pow() to raise a number to a power.
+
+When we square a number like 2 × 2 we get 4 — but what about square root? Instead of writing extra code, we use Math.sqrt(). For example, Math.sqrt(4) returns 2.
+

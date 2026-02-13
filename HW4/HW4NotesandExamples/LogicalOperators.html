@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <script>
+      // I am defining my method here
+     /* function whatToDo(temperature, windChill) {
+        if (temperature < 40 && windChill < 0) {
+          document.write("Brrr.. put on a sweatshirt! Or More!");
+        } else {
+          document.write("Yasss!! It's so warm, I can swim in the Clark Fork!");
+        }
+      }*/
+        function whatToDo(temperature) {
+            if (temperature < 0) {
+            document.write("Yikes! It's cold!");
+            } else if (temperature < 10) {
+            document.write("It's still pretty cold");
+            } else if (temperature < 20) {
+            document.write("We are tough in Montana, it's not that bad.");
+            } else if (temperature < 30) {
+            document.write("Break out the t-shirts and shorts!");
+            }
+      }
+    </script>
+  </head>
+
+  <body>
+    <script>
+      // I created a variable here
+      /* var temperature = 30;
+      var windChill = -50;
+
+      whatToDo(temperature, windChill); // remember I am calling my method here
+      */
+        var temperature = 19;
+      whatToDo(temperature); // remember I am calling my method here
+    </script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <script>
+      // I am defining my method here
+     /* 
+        function theForLoop() {
+            for (var i = 0; i < 5; i++) {
+            document.write("I love JavaScript!<br>");
+            }
+      }
+      /* Notes:
+ 
+        There’s a couple of things to notice:
+
+        The variable i is declared in the for loop. Its scope is inside the loop block. You cannot access i outside that block (this is block scope / control-level scope).
+        It initializes to 0. You don’t have to start at 0, but it’s conventional.
+        The evaluation is i < 5. If true, the block runs.
+        The increment is i++ (adds 1 each loop).
+        So, the order is always:
+
+        Initialize the variable.
+        Evaluate the condition.
+        If true, run the code in the block.
+        Increment the variable.
+        Repeat steps 2–4 until the condition is false.
+        If false, exit the loop. */
+
+        // I am defining my method here
+
+      /* 
+      function theWhileLoop(letsKeepLooping) {
+        var count = 0;
+
+        while (letsKeepLooping) {
+          document.write("I love JavaScript!<br>");
+          count++;
+
+          if (count > 5) {
+          letsKeepLooping = false;
+            }
+        } 
+      }
+        */
+
+        // I am defining my method here
+        function theDoWhileLoop() {
+        shouldWeContinue = false;
+
+        do {
+            document.write("<ol>");
+            document.write("<li>New Game</li>");
+            document.write("<li>Load Game</li>");
+            document.write("<li>Settings</li>");
+            document.write("<li>Quit</li>");
+            document.write("</ol>");
+        } while (shouldWeContinue);
+     }
+    </script>
+  </head>
+
+  <body>
+    <script>
+      //theForLoop(); // remember I am calling my method here
+
+      //theWhileLoop(true); // remember I am calling my method here
+      
+      theDoWhileLoop(); // remember I am calling my method here
+    </script>
+  </body>
+</html>
+

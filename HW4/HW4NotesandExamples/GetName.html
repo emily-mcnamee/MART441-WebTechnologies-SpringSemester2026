@@ -1,0 +1,25 @@
+<html>
+  <body>
+    <label id="lblName">Your Name Goes Here</label><br>
+    <input id="txtName" type="text"><br>
+    <button id="btnSubmit" onclick="getName('Nice to meet you');">Submit</button><br>
+
+    <script>
+       /* function getName() {
+            var currentName =
+            document.getElementById("txtName").value;
+            document.getElementById("lblName").innerHTML= currentName;
+        }
+        */
+          function getName(greeting) {
+            var currentName =
+            document.getElementById("txtName").value;
+
+            document.getElementById("lblName").innerHTML =
+            currentName + ", " + greeting;
+        }
+        
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <script>
+      // I am defining my method here
+      function getSquareRoot(number) {
+        return Math.sqrt(number);
+      }
+    </script>
+  </head>
+
+  <body>
+    <script>
+      document.write(getSquareRoot(16)); // remember I am calling my method here
+    </script>
+  </body>
+</html>
