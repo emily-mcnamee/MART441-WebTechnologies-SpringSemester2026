@@ -1,0 +1,62 @@
+/*
+Author: Emily "Quinn" McNamee
+File Name: style.css for index.html
+Date: 1/28/2026
+Purpose: To explain comments
+
+READ ME: Most of these custom classes and elements were copied from previous coding projects and re-done for this project.
+*/
+
+
+*, *::before, *::after{
+    box-sizing: border-box;
+    color: #f3f3f3;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-size: 25px; 
+}
+  /*02052026: moved html, body styles into stylesheet to clean up html head*/
+body {
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #575757;
+}
+
+.textCon {
+  width: 80%;
+  max-width: 80%;
+  background-color: black;
+  padding: 10px;
+  border-radius: 5px;
+}
+/*Background Design*/
+#checkerboard {
+
+  background-image: 
+  linear-gradient(45deg, #222324 25%, transparent 50%),
+  linear-gradient(-45deg, #222324 25%, transparent 25%),
+  linear-gradient(45deg, transparent 75%, #222324 75%),
+  linear-gradient(-45deg, transparent 75%, #222324 75%);
+  background-size: 190px 190px;
+  background-position: 0 0;
+  min-height: 100vh; /* Full viewport height */
+  color: white;
+  text-align: center;
+
+/* Parallax scrolling animation */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+
+.customBG {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.7) 25%, /* Darker at the top */
+    rgba(0, 0, 0, 0.5) 75% /* Lighter at the bottom */
+  );
+}
+

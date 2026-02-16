@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US" data-bs-theme="dark">
+
+<!-- metadata for page -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Webpage for Emily McNamee's ">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>McNamee's 441 Text Adventure</title>
+
+    <!--This Webpage uses Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!--Website's Customized Style Sheet-->
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
+
+    <script defer src="game.js"></script>
+  </head>
+
+  <body id="checkerboard">
+
+    <!--Webpage text-->
+    <span>
+
+    <div>
+
+      <!--Header-->
+      <div class="container-fluid bg-dark-subtle" style=" margin-bottom: -25px">
+      <h3>My 441 WebPage</h3>
+      <p style="font-size: 20px;" >This site contains Emily McNamee's work for MART 441 <br> Homework 4 - <b>Choose Your Own Adventure</b></p>
+      </div>
+      
+      <div class="container-fluid customBG d-flex justify-content-center align-items-center" style="display: flex;">
+        
+        <div class="text-center textCon">
+          <!--02132026: added mainImage id to be able to change the image depending on player's choices-->
+          <img src="./images/CAVE.jpg" id="mainImage" class="img-fluid rounded mx-auto d-block">
+
+          <br>
+
+          <div id="question">
+            You've been lost in this glacial cave for a very long time, barely able to see ahead a few feet. You see the walls split left or right.
+          </div>
+
+          <br>
+
+          <input type="text" size="30" id="choice" placeholder="Please enter left or right">
+          <button id="btnSubmit" onclick="getChoice1();">Click to continue</button>
+
+          <input type="text" size="30" id="choice2" placeholder="Enter yes or no" style="display:none">
+          <button id="btnSubmit2" onclick="getChoice2();"  style="display:none">Click to continue</button>
+
+          <input type="text" size="30" id="choice3" placeholder="Enter yes or no"  style="display:none">
+          <button id="btnSubmit3" onclick="getChoice3();" style="display:none">Click to continue</button>
+        
+          <input type="text" size="30" id="choice5" placeholder="Enter yes" style="display:none">
+          <button id="btnSubmit5" onclick="getChoice5();" style="display:none">Click to continue</button>
+
+          <br>
+          <br>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    </span>
+
+  </body>
+
+</html>
