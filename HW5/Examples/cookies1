@@ -1,0 +1,26 @@
+
+
+<!--In this example, we use document.cookie to both store and retrieve information. At this stage, the cookie is returned as a single string.--> 
+
+<html>
+  <head>
+    <title>Cookies</title>
+    <script>
+      function sendInformation() {
+        var information =
+          document.getElementById("info").value;
+
+        document.cookie =
+          "information=" + information;
+
+        window.location = "Cookie2.html";
+      }
+    </script>
+  </head>
+  <body>
+    <input type="text" id="info">
+    <button onclick="sendInformation();">
+      Submit
+    </button>
+  </body>
+</html>

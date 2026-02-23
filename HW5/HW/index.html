@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US" data-bs-theme="dark">
+
+  <!-- metadata for page -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Webpage for Emily McNamee's ">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>McNamee's 441 Text Adventure</title>
+
+    <!--This Webpage uses Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <!--Website's Customized Style Sheet-->
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
+
+    <script defer src="game.js"></script>
+
+  </head>
+
+  <body id="checkerboard" onload="printBlanks();">
+
+    <!--Webpage text-->
+      <!--02202026: Recoded header with Bootstrap native code-->
+      <!--Header-->
+      <div class="container-fluid bg-dark-subtle text-center py-3">
+        <h3>My 441 WebPage</h3>
+        <p class="fs-7">
+          This site contains Emily McNamee's work for MART 441 <br>
+          Homework 4 - <b>Matching Game</b>
+        </p>
+      </div>
+      
+      <div class="container-fluid customBG customsize d-flex align-items-center vh-100 overflow-hidden">
+  
+        <!--This webpage uses Bootstrap's 'grid' css-->
+        <div class="container text-center">
+          <!--row 1-->
+          <div class="row gx-1 gy-1 justify-content-center">
+            <div class="col-sm-3 "> <img src="" id="image1" class="img-fluid" onclick="flipImage(0);"></div>
+            <div class="col-sm-3 "> <img src="" id="image2" class="img-fluid" onclick="flipImage(1);"></div>
+            <div class="col-sm-3 "> <img src="" id="image3" class="img-fluid" onclick="flipImage(2);"></div>
+            <div class="col-sm-3 "> <img src="" id="image4" class="img-fluid" onclick="flipImage(3);"></div>
+          </div>
+          <!--row 2-->
+          <div class="row gx-1 gy-1 justify-content-center">
+            <div class="col-sm-3 "><img src="" id="image5" class="img-fluid" onclick="flipImage(4);"></div>
+            <div class="col-sm-3 "><img src="" id="image6" class="img-fluid" onclick="flipImage(5);"></div>
+            <div class="col-sm-3 "><img src="" id="image7" class="img-fluid" onclick="flipImage(6);"></div>
+            <div class="col-sm-3 "><img src="" id="image8" class="img-fluid" onclick="flipImage(7);"></div>
+          </div>
+          <!--row 3-->
+          <div class="row gx-1 gy-1 justify-content-center">
+            <div class="col-sm-3 "><img src="" id="image9" class="img-fluid" onclick="flipImage(8);"></div>
+            <div class="col-sm-3 "><img src="" id="image10" class="img-fluid" onclick="flipImage(9);"></div>
+            <div class="col-sm-3 "><img src="" id="image11" class="img-fluid" onclick="flipImage(10);"></div>
+            <div class="col-sm-3 "><img src="" id="image12" class="img-fluid" onclick="flipImage(11);"></div>
+          </div>
+
+        </div>
+
+      </div>
+      <a href="https://www.vecteezy.com/free-vector/remi-card">Remi Card Vectors by Vecteezy</a>
+
+  </body>
+
+</html>

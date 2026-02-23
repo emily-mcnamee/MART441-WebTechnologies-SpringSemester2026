@@ -1,0 +1,26 @@
+<!-- In this example:
+
+The first page uses getElementById to collect user input
+window.location sends the data to the next page as part of the URL
+The second page reads the query string using location.search and URLSearchParams-->
+
+<html>
+  <head>
+    <title>Query String</title>
+    <script>
+      function sendToNextPage() {
+        var information =
+          document.getElementById("information").value;
+
+        window.location =
+          "querystring2.html?info=" + information;
+      }
+    </script>
+  </head>
+  <body>
+    <input type="text" id="information">
+    <button onclick="sendToNextPage();">
+      Submit
+    </button>
+  </body>
+</html>

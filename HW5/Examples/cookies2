@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>Cookies</title>
+    <script>
+      function getInformation() {
+        document.getElementById("message").innerHTML =
+          document.cookie;
+      }
+    </script>
+  </head>
+  <body onload="getInformation();">
+    <div id="message"></div>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+To retrieve a value from an array, we use square brackets and an index:
+
+var food1 = food[0];
+
+This retrieves the first item in the array. Remember: arrays start at 0, so the last index is always (length - 1).
+
+To update an item, you use the same bracket syntax and assign a new value:
+
+
+food[0] = "peaches";
+  
+Now the first element is "peaches" instead of "apple".
+
+One of the most important array properties is length. It tells you how many items are in the array — and it’s why our loop works even if the array grows.
+

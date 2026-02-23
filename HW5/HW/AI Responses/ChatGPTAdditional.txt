@@ -1,0 +1,22 @@
+    Additional ChatGPT response to fixing createRandomArray:
+
+    function createRandomArray(){
+
+        var actualimagePath = [
+            "./images/1.jpg",
+            "./images/2.jpg",
+            "./images/3.jpg",
+            "./images/4.jpg",
+            "./images/Queen.jpg",
+            "./images/King.jpg"
+        ];
+
+        actualImages = actualimagePath.concat(actualimagePath); // duplicate
+        actualImages.sort(() => Math.random() - 0.5); // shuffle
+
+        */    actualImages = actualimagePath.concat(actualimagePath); - this code takes the original actualimagePath array and then interconnects it with a duplication of the same array (.concat). So, after the concatenation the array looks like this: [1,2,3,4,K,Q,1,2,3,4,K,Q]. The simplification of the count array makes it so the program knows exactly what the data is, and then the next line of code will shuffle the data for randomness (as opposed to the original code that randomly picked array numbers until the parameters were satisfied, making it neccessary to constantly update the logic.) */
+
+            actualImages.sort(() => Math.random() - 0.5); - took the positions of the images and randomized them.
+        
+        /* While a better fix to the problem, this doesn't complete the homework parameters for using a loop to display the images, thus I placed it in this folder instead in case I need to use it at a later date. */
+    }

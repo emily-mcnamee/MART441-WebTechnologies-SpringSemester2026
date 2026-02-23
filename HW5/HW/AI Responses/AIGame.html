@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Memory Matching Game</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+        }
+
+        #gameBoard {
+            display: grid;
+            grid-template-columns: repeat(4, 120px);
+            grid-gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        img {
+            width: 120px;
+            height: 120px;
+            cursor: pointer;
+            border: 2px solid #333;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Memory Matching Game</h2>
+
+<div id="gameBoard"></div>
+
+<script>
+    // Blank image array (size 12)
+    var blankArray = [];
+    for (var i = 0; i < 12; i++) {
+        blankArray.push("https://picsum.photos/400/250?random=7");
+    }
+
+    // Actual image array (6 pairs = 12 total)
+    var actualImages = [
+        "https://picsum.photos/400/250?random=1",
+        "https://picsum.photos/400/250?random=2",
+        "https://picsum.photos/400/250?random=3",
+        "https://picsum.photos/400/250?random=4",
+        "https://picsum.photos/400/250?random=5",
+        "https://picsum.photos/400/250?random=6"
+    ];
+
+    var actualArray = [];
+
+    // Add each image twice (to make pairs)
+    for (var i = 0; i < actualImages.length; i++) {
+        actualArray.push(actualImages[i]);
+        actualArray.push(actualImages[i]);
+    }
+
+    // Shuffle actualArray using Math.random()
+    for (var i = actualArray.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = actualArray[i];
+        actualArray[i] = actualArray[j];
+        actualArray[j] = temp;
+    }
+
+    var gameBoard = document.getElementById("gameBoard");
+
+    // Display blank images using for loop
+    for (let i = 0; i < 12; i++) {
+        var img = document.createElement("img");
+        img.src = blankArray[i];
+        img.dataset.index = i;
+
+        img.addEventListener("click", function() {
+            this.src = actualArray[this.dataset.index];
+        });
+
+        gameBoard.appendChild(img);
+    }
+</script>
+
+</body>
+</html>

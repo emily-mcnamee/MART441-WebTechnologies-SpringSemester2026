@@ -1,0 +1,26 @@
+<!--You can also create arrays by making an instance of the Array class. (We haven’t formally covered classes and objects yet — but you’ve already used one: the Math class.) -->
+
+
+<html>
+  <head>
+    <title>Arrays</title>
+    <script>
+      function printArray() {
+        var food = new Array("apple", "orange", "grape");
+        var allFoods = "";
+
+        for (var i = 0; i < food.length; i++) {
+          allFoods += food[i] + "<br>";
+        }
+
+        document.getElementById("myFoods").innerHTML = allFoods;
+      }
+    </script>
+  </head>
+
+  <body onload="printArray();">
+    <div id="myFoods"></div>
+  </body>
+</html>
+  
+<!--If you run both examples, the output is the same. The difference is mostly stylistic — it’s simply two ways to create arrays.-->

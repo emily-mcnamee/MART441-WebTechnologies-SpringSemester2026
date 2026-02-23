@@ -1,0 +1,25 @@
+<!--What if your data starts as one long string? We can turn it into an array using split(). The split() method uses a delimiter (the character that separates items) and returns an array.-->
+
+<html>
+  <head>
+    <title>Arrays</title>
+    <script>
+      function printArray() {
+        var friends = "George,Grace,Ella,Jake,Meaghan,Cole";
+        var separateFriends = friends.split(",");
+
+        var allFriends = "";
+        for (var i = 0; i < separateFriends.length; i++) {
+          allFriends += separateFriends[i] + "<br>";
+        }
+
+        document.getElementById("myFriends").innerHTML = allFriends;
+      }
+    </script>
+  </head>
+
+  <body onload="printArray();">
+    <div id="myFriends"></div>
+  </body>
+</html>
+  
