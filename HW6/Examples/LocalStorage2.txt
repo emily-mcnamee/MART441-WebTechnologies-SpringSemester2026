@@ -1,0 +1,39 @@
+<!--The second page retrieves the data from local storage, converts it back into a JSON object, and then accesses its values. -->
+
+<html>
+  <head>
+    <title>JSON FTW</title>
+    <script>
+      function getInformation()
+      {
+        var information =
+          localStorage.getItem("information");
+
+        document.getElementById("info").innerHTML =
+          "<h1>" +
+          JSON.parse(information).car +
+          "</h1>";
+      }
+
+      function goNextPage()
+      {
+        window.location = "Page1.html";
+      }
+    </script>
+  </head>
+
+  <body onload="getInformation();">
+    <div id="info"></div>
+    <br>
+    <button onclick="goNextPage();">
+      Go to Next Page
+    </button>
+  </body>
+</html>
+
+<!--Notice the workflow:
+
+We convert the JSON object into a string using JSON.stringify() before storing it
+We retrieve the string from local storage
+We convert it back into a JSON object using JSON.parse()
+Both stringify() and parse() come from the JSON class. Pretty slick. -->

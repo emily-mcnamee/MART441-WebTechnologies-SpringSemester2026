@@ -1,0 +1,163 @@
+push() Array
+
+<html>
+  <head>
+    <title>Array Push</title>
+    <script>
+      function setInformation()
+      {
+        var information = new Array("Dog", "Cat");
+        information.push("Hedgehog");
+        document.getElementById("info").innerHTML = information[0];
+      }
+    </script>
+  </head>
+
+  <body onload="setInformation();">
+    <div style="font-size: 24px" id="info"></div>
+    <br>
+  </body>
+</html>
+
+Example: information.push will add "Item 1" to the array. However, because the code is only asking to bring up the 0 item in the array, only Dog will be showed. Either change which item is shown or add 2 and 3 to the array to show the other two listed items.
+
+
+pop() Array
+
+The opposite of push() is pop(). This follows a LIFO model: Last In, First Out. Think of it like a stack of plates: you add to the top, and you remove from the top.
+
+<html>
+  <head>
+    <title>Array Pop</title>
+    <script>
+      var information;
+
+      function setInformation()
+      {
+        information = new Array();
+        information.push("Item 1");
+        information.push("Item 2");
+        information.push("Item 3");
+        information.push("Item 4");
+
+        getInformation();
+      }
+
+      function getInformation()
+      {
+        var firstElement = information.pop();
+        document.getElementById("info").innerHTML = firstElement;
+        whatsLeftInArray();
+      }
+
+      function whatsLeftInArray()
+      {
+        document.getElementById("whatsleft").innerHTML = information;
+      }
+    </script>
+  </head>
+
+  <body onload="setInformation();">
+    <div style="font-size: 24px" id="info"></div>
+    <br>
+    <div style="font-size: 24px" id="whatsleft"></div>
+    <br>
+  </body>
+</html>
+  
+Notice that whatsLeftInArray() prints all items except Item 4, because it was popped off the array.
+
+
+Delete vs. Remove
+
+It’s important to know that deleting an element is not the same as removing it. When you use delete, the value becomes undefined, but the index still exists in the array.
+
+<html>
+  <head>
+    <title>Array Delete</title>
+    <script>
+      var information;
+
+      function setInformation()
+      {
+        information = new Array();
+        information.push("Item 1");
+        information.push("Item 2");
+        information.push("Item 3");
+        information.push("Item 4");
+
+        getInformation();
+      }
+
+      function getInformation()
+      {
+        delete information[0];
+        document.getElementById("info").innerHTML =
+          information.toString();
+      }
+    </script>
+  </head>
+
+  <body onload="setInformation();">
+    <div style="font-size: 24px" id="info"></div>
+    <br>
+    <div style="font-size: 24px" id="whatsleft"></div>
+    <br>
+  </body>
+</html>
+  
+
+JavaScript arrays can hold strings, numbers, objects, and even functions. That means we can store behaviors in an array, not just data. Wild.
+
+<html>
+  <head>
+    <title>Array Function Add</title>
+    <script>
+      function setInformation()
+      {
+        var information = new Array();
+        information.push(changeInformation());
+
+        information[0];
+      }
+
+      function changeInformation()
+      {
+        document.getElementById("info").innerHTML =
+          "This is my function called from an array.";
+      }
+    </script>
+  </head>
+
+  <body onload="setInformation();">
+    <div id="info"></div>
+    <br>
+  </body>
+</html>
+
+Combining Arrays with concat()
+
+What if you have two arrays and want to combine them into a single array? That’s where concat() comes in. It works like string concatenation, but for arrays.
+
+<html>
+  <head>
+    <title>Array Concat</title>
+    <script>
+      function setInformation()
+      {
+        var bikes = ["Salsa", "Santa Cruz", "Deviate", "Kona"];
+        var models = ["Cutthroat", "5010", "Highlander", "Jake the Snake"];
+        var information = bikes.concat(models);
+
+        document.getElementById("info").innerHTML =
+          information.toString();
+      }
+    </script>
+  </head>
+
+  <body onload="setInformation();">
+    <div style="font-size: 24px" id="info"></div>
+    <br>
+  </body>
+</html>
+  

@@ -1,0 +1,58 @@
+In this section, we will discuss JSON. What is JSON? It stands for JavaScript Object Notation. JSON is another way to store data, and it helps us organize a set of information in one place.
+
+Before we use JSON, we need a little bit of background. Don’t worry, we’ll go into much more detail next week.
+
+Object-Oriented Programming (OOP)
+Object-Oriented Programming (OOP) is a way of designing programs by modeling the real world. The idea is simple: we create “templates” and then create specific examples from them.
+
+First, we create classes. A class is a generic template or blueprint. Think of it like architectural plans: one blueprint can be used to build many houses. Similarly, a single class can create many objects.
+
+Classes typically include:
+
+Constructor(s)
+Attributes (data / properties)
+Methods (functions / behaviors)
+From classes, we create objects, which are specific instances of a class. You’ve already interacted with objects in JavaScript — even if you didn’t realize it.
+
+The most important takeaway for now: classes are templates, and objects are specific instances. If you’ve got that, you’re in great shape.
+
+You’ve Used Classes Already
+For example:
+
+Math is a built-in class, and you’ve used Math.random()
+Array is also a class — and when we write new Array(), we are creating a new object (a new array instance)
+Once you have an object, you access its attributes and methods using dot notation. Example: myArray.push("more stuff")
+
+So… Where Does JSON Fit?
+JSON lets us store information in a structured way using key-value pairs. We create JSON objects using curly braces ({ }).
+
+Here’s an example:
+
+
+<html>
+  <head>
+    <title>JSON</title>
+    <script>
+      function setInformation()
+      {
+        var information = {
+          "bike": "Santa Cruz",
+          "model": "5010",
+          "year": "2019"
+        };
+
+        document.getElementById("info").innerHTML =
+          "Bike: " + information.bike;
+      }
+    </script>
+  </head>
+
+  <body onload="setInformation();">
+    <div id="info"></div>
+    <br>
+  </body>
+</html>
+  
+Notice the structure: each entry is a key-value pair, like "bike" and "Santa Cruz".
+
+To access a value, you use dot notation with the key: information.bike

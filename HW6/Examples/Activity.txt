@@ -1,0 +1,29 @@
+<script>
+function setInformation() {
+    var images = new Array();
+    images.push("cat");
+    images.push("dog");
+    images.push("fox");
+
+    var gameData = {
+        playerName: "Player 1",
+        images: images
+    };
+
+    document.getElementById("output").innerHTML =
+        "Player: " + gameData.playerName + "<br>" +
+        "Images: " + gameData.images.toString();
+
+    localStorage.setItem("gameData", JSON.stringify(gameData));
+}
+
+      function goNextPage()
+      {
+        window.location = "Activity2.html";
+      }
+</script>
+
+<body onload="setInformation();">
+    <div id="output"></div>
+    <button onclick="goNextPage();">Go to Next Page</button>
+</body>
