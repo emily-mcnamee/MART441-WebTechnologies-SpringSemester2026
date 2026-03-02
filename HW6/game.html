@@ -24,11 +24,11 @@
     <!--Webpage text-->
       <!--02202026: Recoded header with Bootstrap native code-->
       <!--Header-->
-      <div class="container-fluid bg-dark-subtle text-center py-3">
-        <h3>My 441 WebPage</h3>
-        <p class="fs-7">
+      <div class="container-fluid bg-dark-subtle text-center py-1">
+        <h3 style="font-size: smaller;">My 441 WebPage</h3>
+        <p class style="font-size: smaller;">
           This site contains Emily McNamee's work for MART 441 <br>
-          Homework 4 - <b>Matching Game</b>
+          Homework 4 - <b style="font-size: smaller;">Matching Game</b>
         </p>
       </div>
       
@@ -37,6 +37,7 @@
         <!--This webpage uses Bootstrap's 'grid' css-->
         <div id="gameBoard" class="container text-center">
           <p> Attempts: <span id="attemptCounter">0</span></p>
+
           <!--row 1-->
           <div class="row gx-1 gy-1 justify-content-center">
             <div class="col-sm-3 "> <img src="" id="image1" class="img-fluid" onclick="flipImage(0);"></div>
@@ -44,6 +45,7 @@
             <div class="col-sm-3 "> <img src="" id="image3" class="img-fluid" onclick="flipImage(2);"></div>
             <div class="col-sm-3 "> <img src="" id="image4" class="img-fluid" onclick="flipImage(3);"></div>
           </div>
+          <br>
           <!--row 2-->
           <div class="row gx-1 gy-1 justify-content-center">
             <div class="col-sm-3 "><img src="" id="image5" class="img-fluid" onclick="flipImage(4);"></div>
@@ -51,6 +53,7 @@
             <div class="col-sm-3 "><img src="" id="image7" class="img-fluid" onclick="flipImage(6);"></div>
             <div class="col-sm-3 "><img src="" id="image8" class="img-fluid" onclick="flipImage(7);"></div>
           </div>
+          <br>
           <!--row 3-->
           <div class="row gx-1 gy-1 justify-content-center">
             <div class="col-sm-3 "><img src="" id="image9" class="img-fluid" onclick="flipImage(8);"></div>
@@ -60,14 +63,17 @@
           </div>
 
         </div>
+
         <!--FinalScreen id: will appear when all pairs are matched-->
         <div id="finalScreen" class="text-center" style="display:none;">
           <p id="finalMessage"></p>
-          <p>Total Attempts: <span id="finalAttempts"></span></p>
+        <!--03022026: Couldn't figure out how to do a <br> in the message in Javcascript so I just broke it up into two messages-->
+          <p>Age: <span id="finalMessage2"></span></p>
+          <p>Total Attempts: <span id="finalAttempts" ></span></p>
           <button onclick="location.reload()">Play Again?</button>
         </div>
       </div>
-      <a href="https://www.vecteezy.com/free-vector/remi-card">Remi Card Vectors by Vecteezy</a>
+      <a href="https://www.vecteezy.com/free-vector/remi-card" style="font-size: smaller;">Remi Card Vectors by Vecteezy</a>
 
   </body>
 

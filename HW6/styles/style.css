@@ -63,9 +63,9 @@ body {
 
 .customsize
   img {
-    height: 20vh;
+    height: 27vh;
     width: auto;
-    object-fit: contain;
+    object-fit: fill;
 }
 
 #finalScreen {
