@@ -13,7 +13,7 @@ var player = {"firstname":"", "lastname":"", "age":"",};
 // array for card matches
 var matchedCards = [];
 
-// These two variables are needed to check if they're a match
+// variables needed to check if they're a match
 var firstCard = null;
 var secondCard = null;
 
@@ -53,9 +53,7 @@ function printBlanks(){
         //Javascript array destructuring assignment - takes end of array [j] and swaps it with value [i] 
         [actualImages[i], actualImages[j]] = [actualImages[j], actualImages[i]];
     }
-
-        // Check to make sure the function works
-        console.log(actualImages);
+        //console.log(actualImages);
     }
 
 function flipImage(number)
@@ -148,8 +146,9 @@ function showFinalScreen(){
     // bring in player info
 
     /*2262026 for some reason the finalMessage doesn't play, only lists the final Attempts. */
-    /*03022026 forgot to parse the info from the playerInfo function*/
+    /*03022026 forgot to parse all of the info oops */
     var storedPlayer = JSON.parse(localStorage.getItem("playerInfo"));
+
     if (storedPlayer){
         document.getElementById("finalMessage").textContent =
         "Great job" + " " + storedPlayer.firstname + " " + storedPlayer.lastname + "!";
@@ -164,4 +163,11 @@ function playerInfo()
     player = JSON.parse(playerInformation);
     var str = "Name: " + player.firstname + " " + player.lastname + "<br>" +
     "age: " + player.age + "<br>"
+}
+
+function restartGame(){
+
+    localStorage.removeItem("playerInfo");
+
+    window.location.href = "index.html"; 
 }
