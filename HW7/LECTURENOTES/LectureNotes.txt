@@ -1,0 +1,232 @@
+Inside these curly braces, we define the class’s properties (attributes) and functions (methods).
+
+Class names follow the same rules as variable names with one important exception:
+
+Class names should begin with a capital letter
+
+A basic class definition looks like this:
+
+
+class MyFavoriteClass {
+  // class methods / functions
+}
+
+
+Functions Inside Classes
+
+    When defining a class, functions are the parts that do things. These functions are written inside the class block.
+
+    Writing functions inside a class is very similar to writing standalone functions — the syntax is almost identical.
+
+    Function Name
+    Write the function name using standard naming conventions (typically starting with a lowercase letter).
+
+    Input Parameters
+    Parentheses contain any parameters the function needs.
+
+    Function Block
+    The function body is wrapped in curly braces { }. This is where the function’s logic lives.
+
+    Multiple Functions
+    Classes can contain many functions. Simply define each one on its own line. This is mainly a style choice, but it greatly improves readability.
+
+    Example Code
+
+    // a class definition
+    class MyFavoriteClass {
+
+    // function 1
+    sayHello(name1, name2) {
+        console.log(name1 + " says hello to " + name2);
+    }
+
+    // another function
+    callMeCharlie() {
+        console.log("Well call me Charlie");
+    }
+    }
+
+
+The Constructor
+
+    In every class definition, there should be at least one function: the constructor. 
+    By convention, the constructor is usually the first function defined in the class. While this isn’t strictly required, it greatly improves readability.
+    The constructor is always called by JavaScript when a new object is created from a class. Because of this, every class must have a constructor.
+    JavaScript uses the constructor to create new objects of a class type.
+    The constructor’s primary job is to initialize an object’s properties.
+
+    As mentioned earlier, the constructor is typically the first function in a class definition. Any data needed to create the object should be passed in as input parameters, just like a normal function.
+
+        // a class definition
+
+    class Person {
+
+    // constructor
+    constructor(eyeColor, numberOfLegs, numberOfArms, hairColor) {
+        // initialize the object
+        console.log(eyeColor);
+    }
+    }
+
+
+Using this to Store and Access Object Data
+
+    On the previous page, you learned the basic structure of a constructor and how to define input parameters. What we haven’t covered yet is what to do with that data once it reaches the constructor.
+
+    To store data inside a specific object, we use the this keyword. You can think of this as creating variables inside the object itself that can be accessed later.
+
+    Using this with Default Values
+    We’ll start with a simplified Person class that uses a constructor with no input parameters. This allows us to assign default values to properties.
+
+
+    <html>
+    <head>
+    <title>OOP</title>
+    <script>
+        class Person {
+        constructor() {
+            this.eyeColor = "blue";
+            this.hairColor = "red";
+        }
+
+        showInformation() {
+            document.getElementById("person").innerHTML =
+            "Eye Color: " + this.eyeColor +
+            "<br>Hair Color: " + this.hairColor;
+        }
+        }
+    </script>
+    </head>
+    <body>
+    <div id="person"></div>
+    </body>
+    </html>
+
+    Notice what’s happening here:
+
+    The constructor assigns values using this.propertyName
+    These properties exist on the object — not globally
+    Nothing is created until we instantiate the class
+
+
+A Common Mistake: Forgetting this
+
+    You will forget this at some point. Everyone does. The good news is that you now have the debugging tools to spot and fix it.
+
+    Be careful: if you assign a variable inside a constructor without using this, JavaScript will create a global variable.
+
+
+    class Person {
+    constructor() {
+        this.eyeColor = "blue";
+        this.hairColor = "red";
+
+        eyeColor = "green"; // global variable
+    }
+    }
+    
+    In this example:
+
+    this.eyeColor belongs to each Person object
+    eyeColor (without this) becomes a global variable
+    The global variable is not attached to any Person object
+
+
+Passing Input Parameters to the Constructor
+
+    Often, you’ll want to pass values into the constructor when creating an object. To store those values on the object, you must assign them to this.
+
+    class Person {
+    constructor(eyeColor, hairColor) {
+        this.eyeColor = eyeColor;
+        this.hairColor = hairColor;
+    }
+    }
+    
+    Even though the parameter names match the property names, they must still be explicitly assigned. This makes it clear what data belongs to the object.
+
+    One important JavaScript note: you can only define one constructor per class.
+
+
+Accessing Object Properties with this
+
+    To access an object’s properties inside the class, you always use this.propertyName.
+
+
+    class Person {
+    constructor(eyeColor, hairColor) {
+        this.eyeColor = eyeColor;
+        this.hairColor = hairColor;
+    }
+
+    showInformation() {
+        document.getElementById("person").innerHTML =
+        "Eye Color: " + this.eyeColor +
+        "<br>Hair Color: " + this.hairColor;
+    }
+    }
+    
+Creating Objects from Classes
+
+    We’ve talked a lot about classes and objects, but up to this point you may still be wondering: how do we actually create an object from a class?
+
+    To create a new object of a specific class type, we use the new keyword, followed by the class name and any constructor parameters inside parentheses.
+
+    You’ve already done this before with arrays: new Array() calls the array’s constructor. The process is exactly the same for your own classes.
+
+    Instantiating a Class
+    The following example creates a new object of class type Person. The variable myPerson stores the newly created object.
+
+
+    let eyeColor = "blue";
+    let hairColor = "green";
+
+    let myPerson = new Person(eyeColor, hairColor);
+    
+    At this moment, the constructor for Person is automatically called, and the object is fully built and ready to use.
+
+    Example Code:
+
+    HTML:
+    <script>
+        var myObject = new myFavoriteClass("Betty");
+    </script>
+
+    JavaScript:
+
+    class myFavoriteClass {
+        constructor(mainPerson)
+        {
+            console.log(mainPerson);
+            this.whoAreYou = mainPerson;
+        }
+    }
+
+    What happens: Consol log will print out "Betty"
+
+
+Accessing an Object’s Properties
+
+    To access an object’s properties, we use dot notation, just like we did with other JavaScript objects.
+
+
+    myPerson.eyeColor;   // returns the value of eyeColor
+    
+    You can also change a property using the same notation:
+
+
+    myPerson.hairColor = "purple"; // updates the property value
+    
+    Important note: While this works, directly setting object properties like this is often considered poor style in Object-Oriented Programming. Direct access can lead to bugs and unexpected behavior. We’ll talk later about safer ways to control access to object data.
+
+
+Calling Object Functions (Methods)
+
+    Calling an object’s functions (also called methods) also uses dot notation. Parentheses are always included — even if no parameters are passed.
+
+
+    myPerson.walk(); // calls the walk method
+
+    myPerson.timeToTravel(distance); // calls the method with a parameter
+    
+    Functions allow objects to do things, not just store data. 

@@ -1,0 +1,49 @@
+Part 1: The “Object Hunt” (Analog Concept)
+ 
+
+Context: The reading suggests looking around your environment (furniture, people, objects) to understand how “objects” work in programming.
+
+Choose one category of item in the classroom (examples: Chair, Laptop, Water Bottle, Student).
+On paper, define the Class (the generic template) by listing:
+3 Properties (Attributes): data describing the object (e.g., color, weight, isFull).
+2 Functions: things the object “does” (e.g., roll(), refill(), closeLid()).
+
+
+ask: Write the code for your class. Your class must:
+
+Use the class keyword with a Capitalized name (e.g., class Chair).
+Include a constructor that takes your 3 properties as input parameters. 
+Use this correctly to assign those parameters to object properties (e.g., this.color = color;).
+
+Example template (for display):
+
+class Chair {
+  // 1. The Constructor
+
+  constructor(color, height, legCount) {
+    this.color = color;        // Assigning properties using 'this'
+    this.height = height;
+    this.legCount = legCount;
+  }
+
+  // 2. A Function
+
+  roll() {
+    return "The chair is rolling across the floor.";
+  }
+}
+
+Part 3: “The Factory” (Instantiation)
+ 
+
+Context: The goal of OOP is reuse. This step shows how one class can produce many objects.
+
+Task:
+
+Instantiate two specific objects from your class using the new keyword.
+Create two variables with different data values. (They should represent two different “real” objects.)
+
+Example:
+
+let chair1 = new Chair('Red', 'Tall', 4);
+let chair2 = new Chair('Blue', 'Short', 3);

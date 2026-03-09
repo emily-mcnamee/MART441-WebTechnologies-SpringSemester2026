@@ -1,0 +1,189 @@
+Basic understanding of terminology:
+
+Class = template/blueprint (setup for an object, not an object itself)
+Within a Class is the DATA (weight, hairColor, etc) and the FUNCTIONS (eat(), sleep(), etc.)
+
+
+
+
+Let’s finish out the Person class example so you can see how all of this works together: defining a class, adding methods, using getters/setters, creating an object, and calling its functions.
+
+Define a Class
+
+    First, we write our class. Since this is a digital representation of a person, we’ll label it Person. At the beginning, our class structure looks like this:
+
+
+    class Person {
+    constructor() {
+
+    }
+    }
+
+Consider Object Functions (Methods)
+    Next, we think about what a person might do. Since we’re trying to write modular, readable code, we want each function to handle one clear job.
+
+    * Display a person’s properties (commonly done with a toString() method)
+    * Walk (a walk() method)
+    * Calculate how long it takes to travel a distance (a timeToTravel() method)
+
+toString()
+
+    toString() is common across many OOP languages. Here, it uses template strings to return a readable description of the object.
+
+    toString() {
+    let str;
+    str = `This person has ${this.eyeColor} eyes, has ${this.hairColor} hair,
+    and is currently moving at ${this.speed} miles per hour.`;
+    return str;
+    }
+    
+walk()
+
+    Walking is a behavior (a method), so we define it as a function inside the class.
+
+
+    walk() {
+    return `I am walking across the frozen tundra at ${this.speed} miles per hour`;
+    }
+    
+timeToTravel()
+
+    If we know speed and distance, we can compute travel time using distance / speed.
+
+    timeToTravel() {
+    let time = this.distance / this.speed;
+    return time;
+    }
+    
+Getters and Setters (Encapsulation)
+
+    Earlier we mentioned that directly changing properties (like myPerson.eyeColor = ...) is not always a great idea. Instead, we can use getters and setters to control access to properties.
+
+    This is part of a concept called encapsulation: we want the class to manage its own data, not the outside world.
+
+    get eColor() {
+    return this.eyeColor;
+    }
+
+    set eColor(eyeColor) {
+    this.eyeColor = eyeColor;
+    }
+
+
+Altogether: The Full Class
+
+    class Person {
+    constructor(eyeColor, hairColor, speed, distance) {
+        this.eyeColor = eyeColor;
+        this.hairColor = hairColor;
+        this.speed = speed;
+        this.distance = distance;
+    }
+
+    get eColor() {
+        return this.eyeColor;
+    }
+
+    set eColor(eyeColor) {
+        this.eyeColor = eyeColor;
+    }
+
+    walk() {
+        return `I am walking across the frozen tundra at ${this.speed} miles per hour`;
+    }
+
+    timeToTravel() {
+        let time = this.distance / this.speed;
+        return time;
+    }
+
+    toString() {
+        let str;
+        str = `This person has ${this.eyeColor} eyes, has ${this.hairColor} hair,
+    and is currently moving at ${this.speed} miles per hour.`;
+        return str;
+    }
+    }
+
+Creating and Using a Person Object
+    To create and use a Person object, we:
+
+    * Create a variable to store the object reference
+    * Instantiate the object using new and pass constructor values
+    * Call the object’s methods
+
+Create a Variable
+
+    let myPerson;
+  
+Create a New Person Object
+
+    myPerson = new Person('blue', 'brown', 3, 10);
+
+Call the Person’s Functions
+
+    Notice how readable this is: we build the object once, then call clean, meaningful functions on it.
+
+
+    <html>
+    <head>
+    <title>OOP</title>
+    <script>
+
+        class Person {
+        constructor(eyeColor, hairColor, speed, distance) {
+            this.eyeColor = eyeColor;
+            this.hairColor = hairColor;
+            this.speed = speed;
+            this.distance = distance;
+        }
+
+        get eColor() {
+            return this.eyeColor;
+        }
+
+        set eColor(eyeColor) {
+            this.eyeColor = eyeColor;
+        }
+
+        walk() {
+            return 'I am walking across the frozen tundra at ' + this.speed + ' miles per hour';
+        }
+
+        timeToTravel() {
+            let time = this.distance / this.speed;
+            return "It will take approximately " + Math.round(time) +
+                " hours to cover " + this.distance + " miles.";
+        }
+
+        toString() {
+            let str;
+            str = 'This person has ' + this.eyeColor + ' eyes, has ' +
+                this.hairColor + ' hair, and is currently moving at ' +
+                this.speed + ' miles per hour.';
+            return str;
+        }
+        }
+
+        function createAndShow() {
+        let myPerson = new Person('blue', 'brown', 3, 10);
+
+        document.getElementById("myWalk").innerHTML = myPerson.walk();
+        document.getElementById("myTimeToTravel").innerHTML = myPerson.timeToTravel();
+        document.getElementById("myPerson").innerHTML = myPerson.toString();
+        }
+
+    </script>
+    </head>
+
+    <body>
+    <div id="myWalk"></div>
+    <div id="myTimeToTravel"></div>
+    <div id="myPerson"></div>
+
+    <script>
+        createAndShow();
+    </script>
+    </body>
+    </html>
+
