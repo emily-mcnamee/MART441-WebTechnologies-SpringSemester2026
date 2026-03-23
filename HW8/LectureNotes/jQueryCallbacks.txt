@@ -1,0 +1,69 @@
+Callbacks
+---
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $(".myGreatClass").fadeOut("slow", function () {
+                    $("#infoid").toggle();
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <p id="infoid">This is a paragraph.</p>
+    <p class="myGreatClass" style="background-color:red">
+        This is the second paragraph.
+    </p>
+    <button>Click me to hide paragraphs</button>
+    <br>
+
+</body>
+</html>
+
+So what just happened? When the button is clicked, the paragraph with the class myGreatClass fades out slowly. Once that animation finishes, the callback function runs, toggling the paragraph with the ID infoid.
+
+Keep in mind: a callback does not have to contain another jQuery method. It can include any JavaScript code you want.
+
+
+Chaining
+---
+
+So what is chaining? Chaining allows us to call multiple jQuery methods on the same element, one after another, using the dot operator. Here’s an example.
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $(".myGreatClass")
+                    .fadeOut("slow")
+                    .fadeIn("slow");
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <p id="infoid">This is a paragraph.</p>
+    <p class="myGreatClass" style="background-color:red">
+        This is the second paragraph.
+    </p>
+    <button>Click me to hide paragraphs</button>
+    <br>
+
+</body>
+</html>
+
+Using chaining, we can apply multiple jQuery functions to the same selection and have them execute in sequence. This makes jQuery code cleaner, more readable, and easier to maintain.

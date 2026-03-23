@@ -1,0 +1,120 @@
+  body {
+      background: linear-gradient(135deg, #f9dfe8 0%, #c9d8ff 50%, #e3c8ff 100%);
+      font-family: "Poppins", sans-serif;
+      color: #5a4e7c;
+      overflow-x: hidden;
+    }
+
+  p {
+    font-size: x-large;
+    color: #ffffff;
+    font-family: cursive;
+  }
+
+    /* Floating shapes */
+    .shape {
+      position: absolute;
+      opacity: 0.6;
+
+    }
+
+    .star {
+      width: 70px;
+      height: 70px;
+      background: radial-gradient(circle, #fff 40%, #d7c6ff 100%);
+      clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 
+        68% 57%, 79% 91%, 50% 70%, 
+        21% 91%, 32% 57%, 2% 35%, 
+        39% 35%
+      );
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      from {transform: rotate(0deg);}
+      to {transform: rotate(360deg);}
+    }
+    .star2 {
+      width: 90px;
+      height: 90px;
+      background: radial-gradient(circle, #f8f4d6 40%, #ffffff 100%);
+      clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 
+        68% 57%, 79% 91%, 50% 70%, 
+        21% 91%, 32% 57%, 2% 35%, 
+        39% 35%
+      );
+      animation: spin 2s linear infinite;
+    }
+
+    .cloud {
+      width: 200px;
+      height: 100px;
+      background: #ffffffaa;
+      border-radius: 50px;
+      filter: blur(1px);
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: "";
+      position: absolute;
+      background: #ffffffaa;
+      width: 80px;
+      height: 60px;
+      border-radius: 50%;
+      top: -20px;
+      left: 10px;
+    }
+
+    .cloud::after {
+      width: 90px;
+      height: 70px;
+      top: -10px;
+      left: 50px;
+    }
+
+
+    .dream-card {
+      background: rgba(173, 216, 230, 0.35);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(90, 78, 124, 0.15);
+    }
+
+    h1 {
+      color: #b28ddf;
+      font-weight: 600;
+    }
+
+    .btn-dream {
+      background-color: #b3c7ff;
+      color: #4a3f63;
+      border: none;
+      border-radius: 30px;
+      padding: 0.6rem 1.5rem;
+      transition: 0.3s ease;
+    }
+
+    .btn-dream:hover {
+      background-color: #cbb7ff;
+      color: white;
+    }
+
+ .artImage {
+    max-width: 500px;
+    opacity: 0.9;
+}
+
+#image1 {
+    position: absolute;
+    top: 10px;
+
+}
+
+#image2 {
+    position: absolute;
+    bottom: 20px;
+}

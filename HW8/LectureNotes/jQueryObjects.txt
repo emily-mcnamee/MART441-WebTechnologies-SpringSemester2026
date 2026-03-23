@@ -1,0 +1,147 @@
+jQuery selectors
+---
+jQuery works from a simple idea: all elements should be easily accessible and manipulatable. To accomplish this, jQuery uses a CSS-like selection process. To select an element, you pass CSS-like selectors into the jQuery selector, $(), with the selector placed inside double quotes.
+
+For example, to select all of the h1 elements on a page, you would write:
+
+$( "h1" )
+
+This returns a jQuery object that contains references to all matching h1 elements in the DOM.
+
+
+Documenty Ready Function
+---
+A common jQuery best practice is using a “document ready” function. This wrapper should contain any statements or functions that affect the DOM. The “document ready” function runs after the web page and DOM are loaded and ready for manipulation (but before assets like images necessarily finish loading). You should get in the habit of doing this.
+
+The document ready function looks like one of the following:
+
+// long document ready object
+$( document ).ready(function(){
+    // your jQuery and DOM related code here
+});
+
+// short hand document ready function
+$(function(){
+    // your jQuery and DOM related code here
+});
+
+
+Example: Click to Hide All Paragraphs
+---
+One example we discussed is selecting all elements of a given tag at once. You can use the selector $ with the tag name inside the parentheses to target all matching elements. Here’s one example:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $("p").hide();
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <p>This is a paragraph.</p>
+    <p>This is the second paragraph.</p>
+    <button>Click me to hide paragraphs</button>
+    <br>
+
+</body>
+</html>
+
+Notice that when you click the button, it calls $("button").click and then runs the function. This is new syntax, but it is very common in jQuery, so you will see it often.
+
+Example: Target by ID 
+---
+
+We can also find something by ID using $ and then the # (hashtag). This should look familiar from CSS, right?
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $("#infoid").hide();
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <p id="infoid">This is a paragraph.</p>
+    <p>This is the second paragraph.</p>
+    <button>Click me to hide paragraphs</button>
+    <br>
+
+</body>
+</html>
+
+This time, only the paragraph with the ID infoid will disappear, while the other p tag remains visible.
+
+Example: Using this
+---
+
+What if we want to find the specific item that was just clicked? You can use the this keyword to reference the element that triggered the event. For example:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $(this).hide();
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <p id="infoid">This is a paragraph.</p>
+    <p class="myGreatClass">This is the second paragraph.</p>
+    <button>Click me to hide paragraphs</button>
+    <br>
+
+</body>
+</html>
+
+
+What's Really Happening? hide() vs. toggle()
+---
+
+When you call hide(), it doesn’t truly remove the element from the DOM. Instead, it typically changes its CSS so it is not displayed (for example, setting display: none;). Because of this, you can also use toggle() to switch elements between visible and hidden each time the button is clicked.
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $(".myGreatClass").toggle();
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <p id="infoid">This is a paragraph.</p>
+    <p class="myGreatClass">This is the second paragraph.</p>
+    <button>Click me to hide paragraphs</button>
+    <br>
+
+</body>
+</html>
