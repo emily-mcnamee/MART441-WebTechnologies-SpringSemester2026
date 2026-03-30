@@ -1,0 +1,219 @@
+AJAX (Asynchronous JavaScript and XML)
+
+aka Asynchronous JavaScript and XML
+---
+
+What is AJAX? AJAX stands for Asynchronous JavaScript and XML. Huh? Well, here’s the deal: web pages are traditionally delivered synchronously. That means the browser loads things in a step-by-step way, and (historically) you couldn’t do multiple “server” actions in the background without interrupting the page experience.
+
+Once AJAX arrived, it allowed the browser to send a request to a server, and while that request is being processed (and a response is being sent back), the end-user can continue interacting with the web page. AJAX helps prevent the “white screen of nothingness,” especially when loading larger datasets.
+
+So, what are some of the benefits of AJAX in a more defined way? W3Schools describes them as:
+
+-Update a web page without reloading the page
+-Request data from a server — after the page has loaded
+-Receive data from a server — after the page has loaded
+-Send data to a server — in the background
+
+The points above matter because they increase page responsiveness, and end-users are happy because of it!
+
+
+Basic AJAX Request Example (XMLHttpRequest)
+---
+
+What do these requests look like? Here is an example:
+
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "bikeInfo.txt", true);
+  xhttp.send();
+}
+</script>
+
+The script above creates an XMLHttpRequest object, then attempts to open a file named bikeInfo.txt. It sends the request, receives the response, and displays the returned text inside a DOM element.
+
+Behind the scenes, onreadystatechange fires multiple times as the request progresses. Once the request is complete (readyState == 4) and successful (status == 200), the response is ready to use.
+
+https://youtu.be/3I74w-okyfE?si=NjVxLh9BNfnFQEYV
+
+
+Full Text File Example (bikeInfo.txt)
+---
+
+Let’s look at a full example — remember, you will need a bikeInfo.txt in the same directory to see this work.
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>
+    function showBikeInfo() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("bikeInformation").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "bikeInfo.txt", true);
+      xhttp.send();
+    }
+  </script>
+</head>
+
+<body>
+  <div id="bikeInformation"></div>
+  <button id="btnSubmit" onclick="showBikeInfo();">Show Information</button>
+</body>
+
+</html>
+
+To run this example, you will want to run it in Firefox, as Chrome will throw a cross-origin exception when loading local files.
+
+readyState values
+0: request not initialized
+1: server connection established
+2: request received
+3: processing request
+4: request finished, and response is ready
+status values
+200: “OK”
+403: “Forbidden”
+404: “Not Found”
+
+
+AJAX + XML Example (catalog.xml)
+---
+
+AJAX can read many different file types. For example, it can retrieve server files formatted as XML. XML does not “display” anything by itself — it describes data using tags.
+
+Here is an example of XML data:
+
+<CATALOG>
+  <CD>
+    <TITLE>Empire Burlesque</TITLE>
+    <ARTIST>Bob Dylan</ARTIST>
+    <COUNTRY>USA</COUNTRY>
+    <COMPANY>Columbia</COMPANY>
+    <PRICE>10.90</PRICE>
+    <YEAR>1985</YEAR>
+  </CD>
+
+  <CD>
+    <TITLE>Hide your heart</TITLE>
+    <ARTIST>Bonnie Tyler</ARTIST>
+    <COUNTRY>UK</COUNTRY>
+    <COMPANY>CBS Records</COMPANY>
+    <PRICE>9.90</PRICE>
+    <YEAR>1988</YEAR>
+  </CD>
+</CATALOG>
+
+So how does AJAX access this XML and display it? Here is an example that loads catalog.xml and renders a table of Title + Artist:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td { padding: 5px; }
+  </style>
+
+  <script>
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          showCatalogInfo(this);
+        }
+      };
+      xhttp.open("GET", "catalog.xml", true);
+      xhttp.send();
+    }
+
+    function showCatalogInfo(xml) {
+      var i;
+      var xmlDoc = xml.responseXML;
+      var table = "<tr><th>Title</th><th>Artist</th></tr>";
+      var x = xmlDoc.getElementsByTagName("CD");
+
+      for (i = 0; i < x.length; i++) {
+        table += "<tr><td>" +
+          x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+          "</td><td>" +
+          x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+          "</td></tr>";
+      }
+
+      document.getElementById("catalogInformation").innerHTML = table;
+    }
+  </script>
+</head>
+
+<body>
+  <table id="catalogInformation"></table>
+  <button id="btnSubmit" onclick="loadDoc();">Show Information</button>
+</body>
+
+</html>
+
+If you look at the for loop, it adds the Title and Artist to the table and displays it by appending rows as it loops through the XML.
+
+https://youtu.be/1hztOlaj6H4?si=e3I3KYXAgk1tdJ4P
+
+
+AJAX + JSON Example (bike.json)
+---
+
+We can also read a file that contains JSON and display the information as we did before. It might look something like this:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>
+    function showBikeInfo() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          var bike = JSON.parse(this.responseText);
+
+          document.getElementById("bikeInformation").innerHTML =
+            "Manufacturer: " + bike.manufacturer +
+            "<br>Model: " + bike.model +
+            "<br>First Name: " + bike.owner.firstName +
+            "<br>Last Name: " + bike.owner.lastName +
+            "<br>Sizes Available:<br>" +
+            bike.sizes[0] + "<br>" +
+            bike.sizes[1] + "<br>" +
+            bike.sizes[2] + "<br>" +
+            bike.sizes[3];
+        }
+      };
+      xhttp.open("GET", "bike.json", true);
+      xhttp.send();
+    }
+  </script>
+</head>
+
+<body>
+  <div id="bikeInformation"></div>
+  <button id="btnSubmit" onclick="showBikeInfo();">Show Information</button>
+</body>
+
+</html>
+Now, responseText contains a JSON string (just like you might receive from a server). We parse it with JSON.parse(), then access the object’s properties normally.
+
+So, how is this all done in jQuery? That’s what we’ll look at next.
+
+https://youtu.be/a0uRqwLETfc?si=aEm4G0QZn8Gc070d

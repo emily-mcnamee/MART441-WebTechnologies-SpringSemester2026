@@ -1,0 +1,8 @@
+/*
+
+03272026: Incredibly helpful bootstrap debugging tool to see where the table columns don't align
+
+table, th, td {
+  border: 1px solid red;
+}
+*/

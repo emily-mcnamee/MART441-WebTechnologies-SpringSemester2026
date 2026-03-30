@@ -1,0 +1,65 @@
+
+Before we look at how to access data using AJAX, we will review JSON. Recall that JSON stands for JavaScript Object Notation. It allows us to store data as structured objects.
+
+JSON is a standardized way of storing and transporting unordered collections of data. Data is stored as name:value (or key:value) pairs. The values in JSON can be:
+
+- strings
+- numbers
+- booleans
+- arrays
+- other (nested) JSON objects
+
+Once JSON data is inside JavaScript (for example, after being sent from an API), it behaves just like a JavaScript object. This means it can be traversed and manipulated using standard JS object notation.
+
+
+The following code creates a JavaScript object that is also valid JSON:
+
+let bike = { //nested json object
+  "manufacturer": "Santa Cruz", //string
+  "model": "5010", //number
+  "owner": { //another json object
+    "firstName": "Bob",
+    "lastName": "Jones"
+  },
+  "sizes": [ //array
+    "small",
+    "medium",
+    "large",
+    "x-large"
+  ]
+};
+
+Once this object is assigned to the variable bike, we can navigate through it and access its values.
+
+
+Accessing JSON with Vanilla JavaScript
+---
+
+The next example creates the same object and demonstrates how to access its values using traditional JavaScript.
+
+<script>
+let bike = {
+  "manufacturer": "Santa Cruz",
+  "model": "5010",
+  "owner": {
+    "firstName": "Bob",
+    "lastName": "Jones"
+  },
+  "sizes": ["small", "medium", "large", "x-large"]
+};
+
+function showBikeInfo() {
+  document.getElementById("bikeInformation").innerHTML =
+    "Manufacturer: " + bike.manufacturer +
+    "<br>Model: " + bike.model +
+    "<br>First Name: " + bike.owner.firstName +
+    "<br>Last Name: " + bike.owner.lastName +
+    "<br>Sizes Available:<br>" +
+    bike.sizes[0] + "<br>" +
+    bike.sizes[1] + "<br>" +
+    bike.sizes[2] + "<br>" +
+    bike.sizes[3];
+}
+</script>
+
+This example demonstrates key/value pairs, nested objects, and arrays inside JSON—all essential patterns when working with external data.

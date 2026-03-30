@@ -1,0 +1,81 @@
+jQuery + AJAX: Simplifying Requests
+---
+
+The previous examples were a little more complicated, wouldn’t you agree? How does jQuery help us with that?
+
+Let’s look at an example:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("button").click(function () {
+        $("#bikeInformation").load("bikeInfo.txt");
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="bikeInformation">Nothing yet</div>
+  <button>Get Bike Information</button>
+</body>
+
+</html>
+
+
+The basic syntax of the jQuery AJAX .load() call looks like this:
+
+$(selector).load(URL, data, callback);
+
+This means we can:
+
+-Select an element with the jQuery selector ($(selector))
+-Load content from a URL into that element (load(URL))
+-Optionally send data (like query parameters)
+-Optionally run a callback after the load completes
+
+
+https://youtu.be/yyA2HnOZyWY?si=7w9JR-puYffu--VM
+
+
+Using a Callback After Load
+---
+
+The previous code shows how we can access elements using the jQuery selector, load data from a URL, and then run an optional function after the load finishes.
+
+So, we could do something like this:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("button").click(function () {
+        $("#bikeInformation").load("bikeInfo.txt", fadeText);
+      });
+    });
+
+    function fadeText() {
+      $("#bikeInformation").fadeOut("slow").fadeIn("slow");
+    }
+  </script>
+</head>
+
+<body>
+  <div id="bikeInformation"></div>
+  <button>Get Bike Information</button>
+</body>
+
+</html>
+
+Here we execute a function after the data is retrieved and displayed.
+
+https://www.w3schools.com/jquery/jquery_ref_ajax.asp
+
+https://youtu.be/2BOna0Fj4WE?si=2EZEX-PjRpHME0oV

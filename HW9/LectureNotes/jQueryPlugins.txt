@@ -1,0 +1,97 @@
+Exploring jQuery Plugins
+---
+
+Let’s switch gears and explore some of the jQuery plugins that are available. What is a jQuery plugin? Plugins are further abstractions built on top of jQuery that package specific effects or behaviors into reusable functions.
+
+A plugin is essentially a custom function written using jQuery. Once you reference the plugin file, you can call its function to activate the effect. That’s a good thing—it allows you to add sophisticated interactions without writing everything from scratch.
+
+Here are a few examples:
+
+Scrolling effects:
+http://www.thepetedesign.com/demos/tiltedpage_scroll_demo.html
+
+Face detection:
+http://facedetection.jaysalvat.com/
+
+Enhanced navigation menus:
+https://github.com/alizahid/slinky
+
+Typography and lettering effects:
+https://canvas.umt.edu/courses/29104/pages/jquery-plugins?module_item_id=1622401
+
+Popups and lightboxes:
+https://dimsemenov.com/plugins/magnific-popup/
+
+https://www.youtube.com/watch?v=5PeRcaNgfvg
+
+
+Building Your Own jQuery Plugin
+---
+
+What if we want to make our own plugin? Even though it might sound daunting, it’s not too bad. Here’s a small example:
+
+$.fn.bluey = function() {
+  this.css("background-color", "blue");
+};
+  
+  We define the function using $.fn, then name it bluey. Not sure if that’s a word, but hey—why not?!
+
+Then function() creates the function, and the CSS applies the style changes to whatever element uses the bluey() method.
+
+    Full Page Example
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $.fn.bluey = function () {
+        this.css("background-color", "blue");
+        };
+
+        $(function () {
+        $("button").click(function () {
+            $("#changeDiv").bluey();
+        });
+        });
+
+    </script>
+    </head>
+    <body>
+    <div id="changeDiv">Test information</div>
+    <button id="btnSubmit">Click</button>
+    </body>
+    </html>
+  
+  When you run this page, the background color of the div turns blue when you click the button. Low and behold—we have a new look based on our function.
+
+ 
+We can apply the plugin to any tags we want, and we can add more changes inside the same plugin:
+
+    $.fn.bluey = function () {
+    this.css("background-color", "blue");
+    this.css("color", "white");
+    this.css("font-size", 24);
+    };
+    
+
+Making It Chainable (Real-World Version)
+---
+
+    To make this work well in the real world—especially for chaining—we should return this. That returns the selected element(s) so more jQuery methods can be chained.
+
+    It’s also common to wrap plugin code in an Immediately Invoked Function Expression (IIFE) and pass jQuery into it. This helps avoid conflicts.
+
+    (function ($) {
+  $.fn.bluey = function () {
+    this.css("background-color", "blue");
+    this.css("color", "white");
+    this.css("font-size", 24);
+    return this; // enables chaining
+  };
+}(jQuery));
+  
+Chaining Example
+
+$("#changeDiv").bluey().fadeOut("slow").fadeIn("slow");
+  
