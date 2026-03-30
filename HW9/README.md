@@ -3,13 +3,13 @@
 This assignment involves using generative AI tools for coding assisstance and debugging. I have reviewed and critically evaluated the AI-generated content and incorporated my original ideas and judgment.
 
 JSON Data Table Specifications:
-*-* A local JSON dataset (MetaData from the Minneapolis Instituation of Art)
-*-* jQuery included (CDN or local)
-*-* AJAX used via jQuery
-*-* Iteration over returned JSON data
-*-* Data displayed in a meaningful, user-friendly way
-*-* A custom jQuery plugin
-*-* The plugin applied to the displayed data
+- A local JSON dataset (MetaData from the Minneapolis Instituation of Art)
+- jQuery included (CDN or local)
+-  AJAX used via jQuery
+-   Iteration over returned JSON data
+-  Data displayed in a meaningful, user-friendly way
+-   custom jQuery plugin
+-     The plugin applied to the displayed data
 
 ## Reflection:
 
