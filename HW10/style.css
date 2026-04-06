@@ -1,0 +1,11 @@
+#myCanvas{
+  border:black;
+  border-style: solid;
+  border-width: 2px;
+
+}
+
+p {
+  font-size: large;
+  color: #ffffff;
+}
