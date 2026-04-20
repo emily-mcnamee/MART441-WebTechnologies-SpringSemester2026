@@ -1,56 +1,319 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
- <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+    <meta charset="UTF-8" />
+    <title>Making your first Phaser 3 Game</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
 
-<script>
+<script type="text/javascript">
+
 var config = {
     type: Phaser.AUTO,
     width: 800,
-    height: 600,
+    height: 800,
     physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 200 }
-        }
-    },
+    default: 'arcade',
+    arcade: {
+        gravity: { y: 500 },
+        debug: false
+    }
+},
     scene: {
         preload: preload,
-        create: create
+        create: create,
+        update: update
     }
 };
+
+// Part 7: cursorKeys need to move player
+var player;
+
+// Part 8: add stars collectable variable
+var stars;
+
+// Part 10: add bomb variable
+var bombs;
+
+// spike variable
+var spikes;
+
+// Part 4: call platforms w/ variable
+var platforms; 
+
+// Part 7: cursorKeys pressed variable
+var cursors;
+
+// Part 9: score variables
+var score = 0;
+var scoreText;
+
+// Part 10: add gameOver state
+var gameOver = false;
 
 var game = new Phaser.Game(config);
 
 function preload ()
 {
-
-    this.load.image('sky', 'assets/skies/space3.png');
-    this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-    this.load.image('red', 'assets/particles/red.png');
+    // Part 1 + 2: load assets
+    this.load.image('sky', 'assets/bigsky.png');
+    this.load.image('ground', 'assets/platform.png');
+    this.load.image('star', 'assets/star.png');
+    this.load.image('bomb', 'assets/bombmine.png');
+    this.load.image('triangle', 'assets/triangle3.png');
+    this.load.spritesheet('dude', 'assets/dude.png',
+        { frameWidth: 32, frameHeight: 48 });
 }
 
 function create ()
 {
-    this.add.image(400, 300, 'sky');
+    // Part 3: create/add sky
+    this.add.image(400, 450, 'sky');
+    
+    // Part 4: add platforms
+    platforms = this.physics.add.staticGroup();
 
-    var particles = this.add.particles('red');
+    //ground plat
+    platforms.create(400, 800, 'ground')
+        .setScale(2)
+        .refreshBody();
 
-    var emitter = particles.createEmitter({
-        speed: 100,
-        scale: { start: 1, end: 0 },
-        blendMode: 'ADD'
+    //1st plat
+   const plat1 = platforms.create(600, 640, 'ground');
+      plat1.setScale(0.5, 0.5).refreshBody();
+    //2nd plat
+   const plat2 = platforms.create(50, 420, 'ground');
+    //3rd plat
+   const plat5 = platforms.create(410, 525, 'ground');
+    plat5.setScale(0.2, 0.4).refreshBody();
+
+    //4th plat
+   const plat3 = platforms.create(600, 270, 'ground');
+   plat3.setScale(0.5, 0.5).refreshBody();
+    //5th plat
+   const plat4 = platforms.create(200, 270, 'ground');
+   plat4.setDisplaySize(80, 32).refreshBody();
+
+      //5th plat
+   const plat6 = platforms.create(770, 130, 'ground');
+   plat6.setDisplaySize(80, 32).refreshBody();
+    
+   //6th plat
+   const plat7 = platforms.create(375, 300, 'ground');
+   plat7.setDisplaySize(35, 32).refreshBody();
+
+    //obstacles
+     triangles = this.physics.add.staticGroup();
+    
+
+    const tri1 = triangles.create(630, 610, 'triangle');
+    tri1.setScale(0.4, 0.9).refreshBody();
+    const tri2 = triangles.create(640, 610, 'triangle');
+    tri2.setScale(0.4, 0.9).refreshBody();
+    const tri3 = triangles.create(650, 610, 'triangle');
+    tri3.setScale(0.4, 0.9).refreshBody();
+
+    
+    const tri4 = triangles.create(370, 270, 'triangle');
+    tri4.setScale(0.4, 0.9).refreshBody();
+    const tri5 = triangles.create(380, 270, 'triangle');
+    tri5.setScale(0.4, 0.9).refreshBody();
+
+    //Part 5: add player + animations
+    player = this.physics.add.sprite(100, 450, 'dude');
+
+    player.setBounce(0.2);
+    player.setCollideWorldBounds(true);
+
+    // double jump variable
+    let jumpCount = 0;
+
+    this.anims.create({
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+        frameRate: 10,
+        repeat: -1
     });
 
-    var logo = this.physics.add.image(400, 100, 'logo');
+        this.anims.create({
+        key: 'turn',
+        frames: [ { key: 'dude', frame: 4 } ],
+        frameRate: 20
+    });
 
-    logo.setVelocity(100, 200);
-    logo.setBounce(1, 1);
-    logo.setCollideWorldBounds(true);
+    this.anims.create({
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+        frameRate: 10,
+        repeat: -1
+    });
 
-    emitter.startFollow(logo);
+    // Part 7: create cursorKey inputs
+    cursors = this.input.keyboard.createCursorKeys();
+    // added SPACE jump
+    spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+    // Part 8: add stars as a group
+    stars = this.physics.add.group({
+    key: 'star',
+    repeat: 11,
+    setXY: { x: 12, y: 0, stepX: 66 },
+    setScale: { x: 0.3, y: 0.3 },
+    });
+
+    // Part 8: stars fall and bounce
+    stars.children.iterate(function (child) {
+
+    child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.6));
+
+    //Change indivual star gravity
+    child.setVelocityY(Phaser.Math.Between(0, 300)); 
+    
+    });
+
+    // Part 10: add bombs as a group
+    bombs = this.physics.add.group();
+
+    // Part 6: add collision logic of platforms
+    this.physics.add.collider(player, platforms);
+
+    // Part 8: add collision logic of stars + platforms
+    this.physics.add.collider(stars, platforms);
+
+    // Part 10: add collision logic of bombs + platforms
+    this.physics.add.collider(bombs, platforms);
+
+    // Part 8: when player + stars overlap, start function collectStar
+    this.physics.add.overlap(player, stars, collectStar, null, this);
+
+    // Part 10: when player + bombs collide, start function hitBomb
+    this.physics.add.collider(player, bombs, hitBomb, null, this);
+    
+    //Triangle collider
+    this.physics.add.collider(player, triangles, hitSpikes, null, this);
+
+    // Part 9: add Score text
+    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+    this.add.text(370, 670, 'Press SPACE again while in air to double jump', { fontSize: '15px', fill: '#000' });
+
+    this.add.text(620, 570, 'Ouch!', { fontSize: '15px', fill: '#000' });
+}
+
+function update ()
+{
+    // Part 10: check if gameOver, if true, then stop
+        if (gameOver)
+    {
+        return;
+    }
+
+    //Part 7: add player movement with cursorKeys
+        if (cursors.left.isDown)
+    {
+        player.setVelocityX(-170);
+
+        player.anims.play('left', true);
+    }
+    else if (cursors.right.isDown)
+    {
+        player.setVelocityX(170);
+
+        player.anims.play('right', true);
+    }
+    else
+    {
+        player.setVelocityX(0);
+
+        player.anims.play('turn');
+    }
+
+    // jump logic
+    if (Phaser.Input.Keyboard.JustDown(spaceKey) && jumpCount < 2)
+    {
+    if (jumpCount === 0)
+    {
+        // First jump (full height)
+        player.setVelocityY(-280);
+    }
+    else if (jumpCount === 1)
+    {
+        // Second jump (shorter)
+        player.setVelocityY(-40);
+    }
+
+    jumpCount++;
+}
+
+    if (player.body.touching.down)
+    {
+        jumpCount = 0;
+    }
+}
+
+// Part 8: player collects star
+function collectStar (player, star)
+{
+    star.disableBody(true, true);
+
+    //  Add and update the score
+    score += 10;
+    scoreText.setText('Score: ' + score);
+
+    // Part 10: if no more stars, make more
+    if (stars.countActive(true) === 0)
+    {
+        //  A new batch of stars to collect
+        stars.children.iterate(function (child) {
+
+            child.enableBody(true, child.x, 0, true, true);
+
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.6));
+            child.setVelocityY(Phaser.Math.Between(0, 300)); // random fall speed
+        });
+
+        //var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+        const width = this.cameras.main.width;
+
+        var x = (player.x < width / 2)
+        ? Phaser.Math.Between(width / 2, width)
+        : Phaser.Math.Between(0, width / 2);
+
+        var bomb = bombs.create(x, 16, 'bomb');
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        bomb.allowGravity = false;
+        bomb.setScale(0.15);
+    }
+}
+
+// Part 10: if hit by bomb, turn red and gameOver
+function hitBomb (player, bomb)
+{
+    this.physics.pause();
+
+    player.setTint(0xff0000);
+
+    player.anims.play('turn');
+
+    gameOver = true;
+}
+
+function hitSpikes(player, triangle)
+{
+    this.physics.pause();
+
+    player.setTint(0xff0000);
+
+    player.anims.play('turn');
+
+    gameOver = true;
 }
 </script>
 
