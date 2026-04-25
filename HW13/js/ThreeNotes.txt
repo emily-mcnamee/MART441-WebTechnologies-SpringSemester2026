@@ -1,0 +1,128 @@
+If you are interested in pursuing threejs further, here is a resource providing some tips and tricks on making your threejs projects even more interesting.
+
+Beginner Friendly Tips, or Help! Why Can’t I See Anything?
+You’ve followed a couple of basic tutorials, and everything worked fine, but now you’re creating your app, and you’ve set everything up exactly as the tutorial says. But you just can’t see anything! WTH??
+
+Here’s a couple of things you can do to figure out the problem.
+
+Check the browser console for error messages. But you already did that, right?
+
+Set the background color to something other than black. Staring at a black canvas? It’s hard to tell whether something is happening or not if all you can see is black. Try setting the background color to red:
+
+scene.background = new THREE.Color('red');
+If you get a red canvas, that means your renderer.render calls are working, and you can move on to figuring out what else is wrong.
+
+Make sure that you have light in your scene and that it’s illuminating your objects. Just like in the real world, most materials in three.js need light to be seen. One exception is MeshBasicMaterial, so you can temporarily override all the materials in your scene to see whether this is your problem.
+
+scene.overrideMaterial = new THREE.MeshBasicMaterial({ color: 'green' });
+Is your object within the camera’s viewing frustum? If your object is not inside the viewing frustum, it will get clipped. Try making your far clipping plane big:
+
+camera.far = 100000;
+camera.updateProjectionMatrix();
+Remember, this is just for testing, though! The camera’s frustum is measured in meters, and you should make it as small as possible for the best performance.
+
+Is your camera inside the object? By default, everything gets created at the point (0,0,0), AKA the origin. Make sure you have moved your camera back so that you can see your scene!
+
+camera.position.z = 10;
+Think carefully about the scale of your scene. Try to visualize your scene, and remember that one unit in three.js is one meter. Does everything fit together in a reasonably logical manner?
+
+General Tips
+Object creation in JavaScript is expensive, so don’t create objects in a loop. Instead, create a single object such as a Vector3 and use vector.set() (or similar methods) inside your loop.
+
+The same goes for your render loop — make sure you are doing as little work as possible in your render loop since you want it to run smoothly 60 times per second.
+
+Always use BufferGeometry instead of Geometry, it’s faster. The same goes for the pre-built objects: always use the buffer geometry version (BoxBufferGeometry rather than BoxGeometry).
+
+Always try to reuse objects such as meshes, materials, textures, etc. (bearing in mind updating some things may be slow — see texture tips below).
+
+Work in SI Units
+three.js is developed using SI units. If you stick with this convention, you will find things more manageable, and if you break it, then make sure that you do so for a good reason!
+
+Distance is measured in meters (1 three.js unit = 1 meter)
+Time is measured in seconds
+Light is measured in SI light units — Candela (cd), Lumen (lm), and Lux (lx). If you are creating things on a truly epic scale (space simulations and things like that), either use a scaling factor or switch to using a logarithmic depth buffer.
+
+Accurate Colors
+For (nearly) accurate colors, use these settings for the renderer:
+
+renderer.gammaFactor = 2.2;
+renderer.gammaOutput = true;
+Then for colors do this:
+
+const color = new Color(0x800080);
+color.convertSRGBToLinear();
+Or, in the more common case of using a color in a material:
+
+const material = new MeshBasicMaterial({ color: 0x800080 });
+material.color.convertSRGBToLinear();
+Finally, to get (nearly) correct colors in your textures, you’ll need to set the texture encoding for the color, environment, and emissive maps only:
+
+const colorMap = new TextureLoader().load('colorMap.jpg');
+colorMap.encoding = sRGBEncoding;
+All other map types should remain in linear color space, so don’t change them!
+
+Note: This section uses older three.js color-management settings. Newer versions of three.js use a different color-management approach. The core idea still holds: keep your color textures in sRGB and let lighting/shading happen in linear space.
+
+JavaScript
+The JavaScript engines used by web browsers change frequently and do an amazing amount of optimization behind the scenes. Don’t trust your intuition about what will be faster — always test.
+
+Models, Meshes and Other Visible Things
+Avoid using standard text-based 3D data formats, such as Wavefront OBJ or COLLADA, for asset delivery. Instead, use formats optimized for the web, such as glTF (and consider Draco mesh compression with glTF).
+
+If you need to make large groups of objects visible and invisible (or add/remove them from your scene), consider using Layers for best performance.
+
+Objects in the same position cause flickering. Try offsetting things by a tiny amount like 0.001 to make things look like they are in the same position, but keep your GPU happy.
+
+Keep your scene centered around the origin to prevent floating point errors at astronomical coordinates.
+
+Never move your Scene object. It gets created at (0,0,0), and this is the default frame of reference for all objects inside it.
+
+Camera
+Make your frustum as small as possible for better performance. It’s fine to use a large frustum in development, but once you are fine-tuning for deployment, make your frustum as small as possible to gain a few FPS.
+
+Don’t put things right on the far clipping plane (especially if your far clipping plane is vast); this can cause flickering.
+
+Renderer
+Don’t enable preserveDrawingBuffer unless you need it
+Disable the alpha buffer unless you need it
+Don’t enable the stencil buffer unless you need it
+Disable the depth buffer unless you need it (but you probably do need it)
+Use powerPreference: "high-performance" when creating the renderer
+Consider only rendering when the camera changes or an animation happens
+If your scene is static and uses OrbitControls, render only when the camera moves:
+OrbitControls.addEventListener('change', () => renderer.render(scene, camera));
+You won’t get a higher frame rate from the last two, but what you will get is fewer laptop fans switching on, and less battery drain on mobile devices.
+
+Lights
+Lights (especially SpotLight, PointLight, DirectionalLight) can be slow. Use as few as possible.
+
+Avoid adding/removing lights frequently, since this can trigger shader recompilation (cached afterward, but still expensive the first time).
+
+Shadows
+If your scene is static, only update the shadow map when something changes rather than every frame.
+
+Materials
+The built-in three.js materials have a simple performance/quality tradeoff:
+
+MeshStandardMaterial — highest quality / slowest
+MeshPhongMaterial
+MeshLambertMaterial
+MeshBasicMaterial — lowest quality / fastest
+Use the best-quality material you can afford, and switch to lower-quality materials when you need to.
+
+Textures
+Use power-of-two texture sizes when you can (1, 2, 4, 8, 16, …, 512, 2048, …). Avoid resizing textures on the fly; create new ones instead.
+
+Post-Processing
+Each post-processing pass requires rendering your entire scene again. Once you’re done testing, consider whether you can combine passes into a single custom pass.
+
+Disposing of Things
+If you remove things from your scene permanently, be sure to dispose of geometries/materials/textures properly. If you just want to hide something temporarily, consider object.visible = false instead.
+
+Performance
+For static or rarely moving objects, consider object.matrixAutoUpdate = false and manually call object.updateMatrix() when needed.
+
+Advanced Tips
+Use instancing when you have hundreds or thousands of similar geometries. Consider GPU-based animation for large particle/vertex systems.
+
+https://discoverthreejs.com/tips-and-tricks/
