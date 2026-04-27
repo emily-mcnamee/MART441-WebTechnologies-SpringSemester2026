@@ -116,7 +116,7 @@ function getControls(camera, renderer) {
 function loadModel() {
   var loader = new THREE.OBJLoader();
 
-  loader.load('/models/Pyramid.obj', function (object) {
+  loader.load('./models/Pyramid.obj', function (object) {
 
   // scale + center 
   // this code was to resize the original obj's model size
