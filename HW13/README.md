@@ -1,83 +1,21 @@
 # Webpage and code created for MART441 - Homework 14
 
-Core Requirements
+This assignment involves using generative AI tools for coding assisstance and debugging. I have reviewed and critically evaluated the AI-generated content and incorporated my original ideas and judgment.
 
-1. Three.js Setup
-Your project must:
+## This assignment includes:
 
-Use the Three.js library
-Run using Live Server
-Include:
-scene
-camera
-renderer
-an animation loop
+* Scene, camera, renderer using Three.js library
+* Two shapes (toruses)
+* Rotation of all objects occuring in an animation loop
+* Model Integration (Pyramid.obj)
+* Camera Changes (TrackBall Controls)
 
-2. Shapes (At Least Two)
-You must display at least two 3D shapes, such as:
+## Reflection:
 
-cubes
-spheres
-cones
-cylinders
-custom geometry
-The shapes should:
+    1. The most important thing I learned using 3D objects is how radically different objects will appear on a 3D platform compared to a 2D one. Its very easy to overlook the positioning of three dimensions over just two, especially when trying to animate these positions. You also have to keep this in mind when you give the user control over the camera; a shape can look fine on a 2D statis plane, but being able to look around the model using the trackball can reveal the model's distortions. 
 
-exist at different positions
-not overlap completely
-be clearly visible
+    2. The most challenging part of the project for me was positioning and minor lighting challenges. As referenced above, I had a lot of difficulty trying to figure out how to get the shapes on the screen; not because of coding mistakes, but because I was having a difficult time positioning them correctly inside the scene itself. I did use ChatGPT to come up with code that centered the model itself in accordance to where the camera was looking; something that I will most likely carry over to my final project. Lighting was also quite difficult, but as I have some background experience in Blender I had a better time figuring out where to position multiple lighting effects more effectively and creatively. 
 
-3. Rotation / Motion
-Your scene must include continuous motion:
+    3. My intent behind this project was to get used to the workflow of three.js and to become familiar with how multiple models can interact inside a shared space. I wanted something that appeared simple yet aesthetically pleasing to watch, with the code being clean and structured optimally. 
 
-at least one object rotating
-rotation must occur inside the animation loop
-You may:
-
-rotate multiple objects
-rotate at different speeds
-rotate on different axes
-
-4. Model Integration (Your Asset)
-Add one 3D model that you created or sourced (OBJ, GLB, etc.).
-
-Requirements:
-
-Model must be visible in the scene
-Proper lighting must be applied
-Model may rotate or remain static
-This means your scene now contains at least three visible elements:
-
-2 shapes + 1 model
-
-5. Additional Elements (Choose at Least One)
-Add at least one of the following:
-
-3D text
-lines or wireframes
-camera motion (orbit, spin, or slow pan)
-lighting changes
-background color changes
-
-6. Reflection Component: Three.js Learning Reflection
-Length: 250–400 words
-Format:
-
-Canvas text submission or
-Included as a README.md in the GitHub repository (clearly labeled “Reflection”)
-Reflection Prompts (Address All)
-Conceptual Understanding
-What was the most important thing you learned about working in 3D space with Three.js? How is this different from working in 2D (Canvas or Phaser)?
-Technical Challenges
-What was the most challenging part of this project (camera positioning, lighting, model loading, scale, rotation, debugging)? How did you work through it? Did you use Gen AI? How and why?
-Design & Intent
-Describe the intention behind your scene. What were you trying to create visually or experientially? How did your use of shapes, motion, and models support that goal?
-Growth & Iteration
-If you had more time, what would you improve or add next? What part of Three.js are you most interested in exploring further?
-Scope Guidance
-This project should feel equivalent to two homework assignments, meaning:
-
-More than a single demo
-Multiple elements working together
-Clear intention in layout and motion
-If one element were removed, the project should still feel meaningful.
+    4. With more time, I would have liked to expand on the design of the model, making it appear more like a complex contraption of moving parts within a machine, opened up for the viewer. It is likely that I will be taking this idea and using it for my final, as I particularly enjoyed using Three.js and see a lot of potential with it. Throughout the project I found a lot of other Three lib functions through its user manual that I would like to try out for myself. I'm particularly interested in the obj model function and the ability to animate it within a 3D space.
