@@ -1,0 +1,77 @@
+{
+  "models": [
+    {
+      "path": "./models/Clock.obj",
+      "name": "clock",
+      "scale": 100,
+      "position": { "x": 0, "y": 0, "z": -20 }
+    },
+    
+      {
+      "path": "./models/Hands/MinuteHand.obj",
+      "name": "minuteh",
+      "scale": 50,
+      "position": { "x": 0, "y": 8, "z": -18.9 }
+    },
+
+    {
+      "path": "./models/Hands/HourHand.obj",
+      "name": "hourh",
+      "scale": 35,
+      "position": { "x": 0, "y": 5.5, "z": -18.5 }
+    },
+
+    {
+    "path": "./models/Gears/Gear09.obj",
+    "name": "gear1",
+    "scale": 35,
+    "position": { "x": 0, "y": 0, "z": -23 }
+    },
+
+    {
+    "path": "./models/Gears/Gear03.obj",
+    "name": "gear2",
+    "scale": 70,
+    "position": { "x": 0, "y": 0, "z": -27 }
+    },
+
+    {
+      "path": "./models/Gears/Gear05.obj",
+      "name": "gear3",
+      "scale": 103,
+      "position": { "x": 0, "y": 0, "z": -30 }
+
+    },
+
+    {
+    "path": "./models/Gears/Gear11.obj",
+    "name": "gear4",
+    "scale": 100,
+    "position": { "x": 0, "y": 0, "z": -35},
+    "rotation": { "x": 0, "y": 0, "z": 0}
+    },
+
+   {
+    "path": "./models/Gears/Gear13.obj",
+    "name": "gear5",
+    "scale": 109,
+    "position": { "x": 0, "y": 0, "z": -39 }
+    },
+
+    {
+    "path": "./models/Gears/Gear10.obj",
+    "name": "gear6",
+    "scale": 110,
+    "position": { "x": 0, "y": 0, "z": -45},
+    "rotation": { "x": 0, "y": 0, "z": 0}
+    },
+
+    {
+      "path": "./models/Gears/Gear14.obj",
+      "name": "gear1",
+      "scale": 115,
+      "position": { "x": 0, "y": 0, "z": -52 }
+    }
+
+  ]
+}

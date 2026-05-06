@@ -1,15 +1,83 @@
+class ModelLoader {
+  constructor(scene) {
+    this.scene = scene;
+    this.loader = new THREE.OBJLoader(); 
+    this.models = {};
+  }
+
+  load(path, options = {}) {
+    const {
+      name = null,
+      position = { x: 0, y: 0, z: 0 },
+      targetSize = 80,
+      rotation = null,
+      onLoad = null,
+      copies = 0,
+      spacing = 0,
+    } = options;
+
+    this.loader.load(path, (object) => {
+
+      // SCALE
+      const box = new THREE.Box3().setFromObject(object);
+      const size = new THREE.Vector3();
+      box.getSize(size);
+
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const scale = targetSize / maxDim;
+      object.scale.set(scale, scale, scale);
+
+      // CENTER
+      box.setFromObject(object);
+      const center = new THREE.Vector3();
+      box.getCenter(center);
+      object.position.sub(center);
+
+      // POSITION OFFSET
+      object.position.set(
+        object.position.x + position.x,
+        object.position.y + position.y,
+        object.position.z + position.z
+      );
+
+      // assign a name to model and store it into the array
+      if (name) {
+        object.name = name;          // Three.js native property
+        this.models[name] = object;  // store for easy lookup
+      }
+      
+      if (rotation) {
+      object.rotation.set(
+        rotation.x || 0,
+        rotation.y || 0,
+        rotation.z || 0
+      );
+    }
+      
+      // ADD TO SCENE
+      this.scene.add(object);
+
+      // OPTIONAL CALLBACK
+      if (onLoad) onLoad(object);
+    });
+  }
+  // retrieve name
+    get(name) {
+    return this.models[name];
+  }
+
+
+}
 
 const CAMERA_CONFIG = {
   position: { x: 0, y: 0, z: 100 }, 
   lookAt: { x: 0, y: 0, z: 0 },
-  fitOffset: 2.5,
+  fitOffset: 1.5,
 };
 
-var pyramids = [];
-var toruses = [];
-
 init();
-  render(); 
+render(); 
+
 
 function init() {
   scene = getScene();
@@ -17,8 +85,6 @@ function init() {
   renderer = getRenderer();
   controls = getControls(camera, renderer);
   light = getLight(scene);
-
-  loadModel();
 
 }
 
@@ -71,6 +137,7 @@ function fitCameraToScene(camera, scene, controls) {
   camera.updateProjectionMatrix();
 }
 
+
 function getScene() {
   var scene = new THREE.Scene();
   scene.background = new THREE.Color(0x111111);
@@ -86,7 +153,7 @@ function getLight(scene) {
   light.position.set(40, 70, 10);
 
   var light2 = new THREE.PointLight(0xffffff, 1, 0);
-  light2.position.set(-50, -80, 10);
+  light2.position.set(-50, -80, -20);
 
   scene.add(light);
   scene.add(light2);
@@ -113,90 +180,44 @@ function getControls(camera, renderer) {
   return controls;
 } 
 
-function loadModel() {
-  var loader = new THREE.OBJLoader();
+const loader = new ModelLoader(scene);
 
-  loader.load('./models/Hand.obj', function (object) {
+  fetch('./models.json')
 
-  // scale + center 
-  // this code was to resize the original obj's model size
-  var box = new THREE.Box3().setFromObject(object);
-  var size = new THREE.Vector3();
-  box.getSize(size);
+    .then(response => response.json())
+    .then(data => {
+      data.models.forEach(model => {
 
-  var maxDim = Math.max(size.x, size.y, size.z);
-  var scale = 50 / maxDim;
-  object.scale.set(scale, scale, scale);
+        loader.load(model.path, {
+          name: model.name,
+          position: model.position,
+          targetSize: model.scale,
+          rotation: model.rotation,
+          copies: model.copies,
+          spacing: model.spacing,
+          onLoad: (obj) => {
+            fitCameraToScene(camera, scene, controls);
 
-  // new variable made for the new scaled size so that other layers would use the new size rather than the original model's size
-  var scaledBox = new THREE.Box3().setFromObject(object);
-  var scaledSize = new THREE.Vector3();
-  scaledBox.getSize(scaledSize);
+            if (model.copies) {
+            for (let i = 0; i < model.copies; i++) {
+              const clone = obj.clone();
 
-  // centerpoint of models
-  box.setFromObject(object);
-  var center = new THREE.Vector3();
-  box.getCenter(center);
-  object.position.sub(center);
+              clone.position.x += i * (model.spacing || 0);
+              clone.position.y += model.offsetY || 20;
 
-  // ORIGINAL Pyramid
-  scene.add(object);
-  pyramids.push(object);
+              scene.add(clone);
+          }
+        }
 
-  // CLONE (flipped + below)
-  /* var pyramid2 = object.clone();
-  pyramid2.rotation.x = Math.PI;
+            console.log(obj.name + " loaded");
+          }
+          
+        });
+      });
+    });
 
-  const GAP_MULTIPLIER = 2; // tweak this number for bigger gap
+console.log("FETCHING MODELS...");
 
-  pyramid2.position.set(0, -scaledSize.y * GAP_MULTIPLIER, 0);
-
-  //older positioning code; keeping it just in case
-  //pyramid2.position.set(0, -scaledSize.y * 0.5, 0);
-
-  scene.add(pyramid2);
-  pyramids.push(pyramid2);
-
-  //torus models
-  /*var torusGeometry = new THREE.TorusGeometry(17, 1.5, 16, 100,);
-  var torusMaterial = new THREE.MeshStandardMaterial({ 
-    color: 0xffffff,
-    // glow effect
-    emissive: 0x222222 
-   });
-
-  var torus1 = new THREE.Mesh(torusGeometry, torusMaterial);
-  var torus2 = new THREE.Mesh(torusGeometry, torusMaterial);
-  // used torus3 to figure out where the point lighting was positioned
-  //var torus3 = new THREE.Mesh(torusGeometry, torusMaterial);
-  //torus3.position.set(40, 70, 10);
-
-  torus1.scale.set(1.2, 1, 1); // stretched on X
-  torus2.scale.set(1.2, 1, 1);
-
-  // Distance between pyramids
-  var gap = scaledSize.y * GAP_MULTIPLIER;
-  const TORUS_POSITIONS = [0.5, 0.8];
-
-
-  // Place torus rings between pyramid gap
-  torus1.position.y = -gap * TORUS_POSITIONS[0];
-  torus1.rotation.x = Math.PI / 2;
-  torus2.position.y = -gap * TORUS_POSITIONS[1];
-  torus2.rotation.x = Math.PI / 2;
-  
-  
-
-  scene.add(torus1);
-  scene.add(torus2);
-  //scene.add(torus3);
-
-  toruses.push(torus1);
-  toruses.push(torus2);*/
-
-});
-
-}
 
 function render() {
   requestAnimationFrame(render);
