@@ -339,47 +339,59 @@ const floor = new THREE.Mesh(
 
   scene.add(floor);
 
-  // json data fetch
+
   fetch('./models.json')
 
-    .then(response => response.json())
-    .then(data => {
-      data.models.forEach(model => {
+  .then(response => response.json())
+  .then(data => {
 
-        loader.load(model.path, {
-          name: model.name,
-          position: model.position,
-          targetSize: model.scale,
-          rotation: model.rotation,
-          color: model.color,
-          onLoad: (obj) => {
-            fitCameraToScene(camera, scene, controls);
+    let loadedCount = 0;
+    const totalModels = data.models.length;
 
-            // rotation speed
-            if (obj.name.startsWith("gear")) {
+    data.models.forEach(model => {
 
-              const gearNumber = parseInt(
-                obj.name.replace("gear", "")
-              );
+      loader.load(model.path, {
+        name: model.name,
+        position: model.position,
+        targetSize: model.scale,
+        rotation: model.rotation,
+        color: model.color,
 
-              // alternate directions
-              const direction = gearNumber % 2 === 0 ? -1 : 1;
+        onLoad: (obj) => {
 
-              // bigger gears spin slower
-              obj.userData.rotationSpeed =
-                0.02 * direction * (1 / Math.sqrt(model.scale / 10));
-            }
+          // rotation speed
+          if (obj.name.startsWith("gear")) {
 
-            console.log(obj.name + " loaded");
+            const gearNumber = parseInt(
+              obj.name.replace("gear", "")
+            );
+
+            // alternate directions
+            const direction = gearNumber % 2 === 0 ? -1 : 1;
+
+            // bigger gears spin slower
+            obj.userData.rotationSpeed =
+              0.02 * direction * (1 / Math.sqrt(model.scale / 10));
           }
-          
-        });
+
+         // console.log(obj.name + " loaded");
+
+          // count completed loads
+          loadedCount++;
+
+          // ALL models finished loading
+          if (loadedCount === totalModels) {
+
+            console.log("All models loaded");
+
+            requestAnimationFrame(() => {
+            fitCameraToScene(camera, scene, controls);
+          });
+          }
+        }
       });
     });
-
-//console.log("FETCHING MODELS...");
-
-
+  });
 
 function render() {
 
