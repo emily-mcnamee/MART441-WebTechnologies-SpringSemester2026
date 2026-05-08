@@ -13,8 +13,9 @@ This assignment involves using generative AI tools for coding assisstance and de
 
 ## Substantial Systems
 * Interaction with TrackBall Controls
-* Data Loading with JSON
 * Dynamic Display and Animation
+    * Model's metallic material dynamically interacts with the scene's light depending on how the user moves the model around
+* Data Loading with JSON
 
 ### Attributions:
 
