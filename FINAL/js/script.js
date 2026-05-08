@@ -91,7 +91,7 @@ class ModelLoader {
 const CAMERA_CONFIG = {
   position: { x: 0, y: 0, z: 100 }, 
   lookAt: { x: 0, y: 0, z: 0 },
-  fitOffset: 1.5,
+  fitOffset: 1,
 };
 
 // initialization and rendering
