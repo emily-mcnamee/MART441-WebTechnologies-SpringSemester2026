@@ -15,6 +15,7 @@ This assignment involves using generative AI tools for coding assisstance and de
 * Interaction with TrackBall Controls
 * Dynamic Display and Animation
     * Model's metallic material dynamically interacts with the scene's light depending on how the user moves the model around
+    * Refresh page to reset camera to default positioning
 * Data Loading with JSON
 
 ### Attributions:

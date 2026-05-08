@@ -27,9 +27,9 @@ class ModelLoader {
 
       child.material = new THREE.MeshStandardMaterial({
         color: color,
-        metalness: 0.89,
-        roughness: 0.28,
-        envMapIntensity: 0.45
+        metalness: 0.82,
+        roughness: 0.12,
+        envMapIntensity: 0.5
       });
 
 
@@ -89,9 +89,19 @@ class ModelLoader {
 }
 
 const CAMERA_CONFIG = {
-  position: { x: 0, y: 0, z: 100 }, 
+  position: { x: 0, y: 0, z: 100 },
+
   lookAt: { x: 0, y: 0, z: 0 },
-  fitOffset: 1,
+
+  fitOffset: 1.5,
+
+  // NEW
+  offset: {
+    x: 0.42,
+    y: 0.1,
+    z: 0.8
+  }
+
 };
 
 // initialization and rendering
@@ -144,12 +154,20 @@ function fitCameraToScene(camera, scene, controls) {
   distance *= CAMERA_CONFIG.fitOffset;
 
   //  Always position camera in front of scene 
-  camera.position.set(center.x, center.y, center.z + distance);
+  /*camera.position.set(center.x, center.y, center.z + distance);*/
+
+  camera.position.set(
+  center.x + distance * CAMERA_CONFIG.offset.x,
+  center.y + distance * CAMERA_CONFIG.offset.y,
+  center.z + distance * CAMERA_CONFIG.offset.z
+);
 
   camera.lookAt(center);
 
   if (controls) {
     controls.target.copy(center);
+    controls.noPan = false;
+    controls.dynamicDampingFactor = 0.08;
     controls.update();
   }
 
@@ -172,12 +190,12 @@ function getScene() {
 function getLight(scene) {
 
   // ambient lighting
-  const ambient = new THREE.AmbientLight(0xffffff, 0.08);
+  const ambient = new THREE.AmbientLight(0xffffff, 0.8);
   scene.add(ambient);
 
 
   // strong warm light from upper-right-front
-  const keyLight = new THREE.DirectionalLight(0xfff1d6, 5);
+  const keyLight = new THREE.DirectionalLight(0xfff1d6, 10);
 
   keyLight.position.set(120, 140, 160);
 
@@ -197,27 +215,27 @@ function getLight(scene) {
   scene.add(keyLight);
 
   // gives metal edge contrast
-  const fillLight = new THREE.DirectionalLight(0x9bbcff, 1.5);
+  const fillLight = new THREE.DirectionalLight(0x9bbcff, 1.8);
 
   fillLight.position.set(-120, 60, 80);
 
   scene.add(fillLight);
 
   // creates glowing metal edges
-  const rimLight = new THREE.DirectionalLight(0xffd6aa, 1.5);
+  const rimLight = new THREE.DirectionalLight(0xffd6aa, 2);
 
   rimLight.position.set(0, 120, -180);
 
   scene.add(rimLight);
 
-  //spot light on clock face
+  // Spot light on clock face
   const spotLight = new THREE.SpotLight(
     0xffffff,
-    6,
-    500,
-    Math.PI / 7,
-    0.4,
-    2
+    6,          
+    1000,       
+    Math.PI / 6, 
+    0.2,         
+   0.5         
   );
 
   spotLight.position.set(0, 70, 100);
@@ -239,13 +257,15 @@ function getLight(scene) {
 
   scene.add(lowerLight);
 
+
   return {
     ambient,
     keyLight,
     fillLight,
     rimLight,
     spotLight,
-    lowerLight
+    lowerLight,
+
   };
 }
 
@@ -266,8 +286,10 @@ function getRenderer() {
   //TrackBall controls
 function getControls(camera, renderer) {
   var controls = new THREE.TrackballControls(camera, renderer.domElement);
-  controls.zoomSpeed = 0.4;
-  controls.panSpeed = 0.4;
+    controls.rotateSpeed = 2;
+    controls.zoomSpeed = 0.6;
+    controls.panSpeed = 0.8;
+    controls.dynamicDampingFactor = 0.1;
   return controls;
 } 
 
