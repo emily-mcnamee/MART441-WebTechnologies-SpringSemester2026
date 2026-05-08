@@ -1,0 +1,188 @@
+{
+  "models": [
+
+    {
+      "path": "./models/Clock.obj",
+      "name": "clock",
+      "scale": 100,
+      "position": { "x": 0, "y": 0, "z": -20 },
+      "color": "#e8ddc7"
+    },
+    
+    {
+      "path": "./models/Hands/MinuteHand.obj",
+      "name": "minuteh",
+      "scale": 50,
+      "position": { "x": 0, "y": 8, "z": -18.9 },
+      "color": "#2F3A3F"
+    },
+
+    {
+      "path": "./models/Hands/HourHand.obj",
+      "name": "hourh",
+      "scale": 35,
+      "position": { "x": 0, "y": 5.5, "z": -18.5 },
+      "color": "#2F3A3F"
+    },
+
+    {
+      "path": "./models/Gears/Gear09.obj",
+      "name": "gear1",
+      "scale": 35,
+      "position": { "x": 0, "y": 0, "z": -23 },
+      "color": "#B08D57"
+    },
+
+    {
+      "path": "./models/Gears/Gear03.obj",
+      "name": "gear2",
+      "scale": 70,
+      "position": { "x": 0, "y": 0, "z": -27 },
+      "color": "#3B2F2F"
+    },
+
+    {
+      "path": "./models/Gears/Gear05.obj",
+      "name": "gear3",
+      "scale": 103,
+      "position": { "x": 0, "y": 0, "z": -32 },
+      "color": "#B87333"
+    },
+
+    {
+      "path": "./models/Gears/Gear11.obj",
+      "name": "gear4",
+      "scale": 100,
+      "position": { "x": 0, "y": 0, "z": -37},
+      "color": "#2F3A3F"
+    },
+
+   {
+    "path": "./models/Gears/Gear13.obj",
+    "name": "gear5",
+    "scale": 120,
+    "position": { "x": 0, "y": 0, "z": -45 },
+    "color": "#B08D57"
+    },
+
+    {
+    "path": "./models/Gears/Gear10.obj",
+    "name": "gear6",
+    "scale": 130,
+    "position": { "x": 0, "y": 0, "z": -53},
+    "color": "#3B2F2F"
+    },
+
+    {
+      "path": "./models/Gears/Gear14.obj",
+      "name": "gear7",
+      "scale": 137,
+      "position": { "x": 0, "y": 0, "z": -61},
+      "color": "#B87333"
+    },
+
+    {
+    "path": "./models/Gears/Gear02.obj",
+    "name": "gear8",
+    "scale": 160,
+    "position": { "x": 0, "y": 0, "z": -71},
+    "color": "#2F3A3F"
+    },
+
+    {
+    "path": "./models/Gears/Gear06.obj",
+    "name": "gear9",
+    "scale": 160,
+    "position": { "x": 0, "y": -60, "z": -50},
+    "rotation": { "x": 1.57, "y": 0, "z": 0},
+    "color": "#B08D57"
+    },
+
+    {
+    "path": "./models/Gears/Gear14.obj",
+    "name": "gear10",
+    "scale": 155,
+    "position": { "x": 0, "y": -70, "z": -50},
+    "rotation": { "x": 1.57, "y": 0, "z": 0},
+    "color": "#B87333"
+    },
+
+    {
+    "path": "./models/Gears/Gear10.obj",
+    "name": "gear11",
+    "scale": 140,
+    "position": { "x": 0, "y": -75, "z": -50},
+    "rotation": { "x": 1.57, "y": 0, "z": 0},
+    "color": "#3B2F2F"
+    },
+
+    {
+    "path": "./models/Gears/Gear13.obj",
+    "name": "gear12",
+    "scale": 135,
+    "position": { "x": 0, "y": -87, "z": -50},
+    "rotation": { "x": 1.57, "y": 0, "z": 0},
+    "color": "#2F3A3F"
+    },
+
+    {
+    "path": "./models/Gears/Gear03.obj",
+    "name": "gear13",
+    "scale": 110,
+    "position": { "x": 0, "y": -94, "z": -50},
+    "rotation": { "x": 1.57, "y": 0, "z": 0},
+    "color": "#B08D57"
+    },
+
+    {
+    "path": "./models/Gears/Gear09.obj",
+    "name": "gear14",
+    "scale": 90,
+    "position": { "x": 0, "y":-101, "z": -50 },
+    "rotation": { "x": 1.57, "y": 0, "z": 0},
+    "color": "#B87333"
+    },
+    
+    {
+    "path": "./models/Gears/Gear09.obj",
+    "name": "gear15",
+    "scale": 70,
+    "position": { "x": 0, "y":-106, "z": -50 },
+    "rotation": { "x": 1.57, "y": 0, "z": 1},
+    "color": "#3B2F2F"
+    },
+    
+    {
+    "path": "./models/Gears/Gear09.obj",
+    "name": "gear16",
+    "scale": 50,
+    "position": { "x": 0, "y":-110, "z": -50 },
+    "rotation": { "x": 1.57, "y": 0, "z": 0},
+    "color": "#2F3A3F"
+    },
+
+    {
+    "path": "./models/Gears/Nut04.obj",
+    "name": "nut",
+    "scale": 12,
+    "position": { "x": 0, "y":-110, "z": -50 },
+    "color": "#2F3A3F"
+    },
+
+    {
+    "path": "./models/Gears/Nut001.obj",
+    "name": "stand",
+    "scale": 100,
+    "position": { "x": 0, "y":-55, "z": -50 },
+    "color": "#2F3A3F"
+    },
+
+    {
+    "path": "./models/Gears/Ball.obj",
+    "name": "ball",
+    "scale": 20,
+    "position": { "x": 0, "y":-0, "z": -45 },
+    "color": "#B08D57"
+    }
+  ]
+}
