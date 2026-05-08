@@ -16,10 +16,3 @@ This assignment involves using generative AI tools for coding assisstance and de
 * Data Loading with JSON
 * Dynamic Display and Animation
 
-### Attributions:
-
-Gear Assets from @ronildo.facanha on sketchfab:
-https://skfb.ly/p7D7y (CC Attribution)
-
-Clock Assets from @serrozbif on sketchfab:
-https://skfb.ly/6WNYI (CC Attribution)
