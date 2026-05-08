@@ -1,3 +1,4 @@
+let loader;
 class ModelLoader {
   constructor(scene) {
     this.scene = scene;
@@ -12,13 +13,30 @@ class ModelLoader {
       targetSize = 80,
       rotation = null,
       onLoad = null,
-      copies = 0,
-      spacing = 0,
+      color: color,
     } = options;
 
     this.loader.load(path, (object) => {
+      
+        // APPLY METAL MATERIAL
+    object.traverse((child) => {
+    if (child.isMesh) {
 
-      // SCALE
+      child.castShadow = true;
+      child.receiveShadow = true;
+
+      child.material = new THREE.MeshStandardMaterial({
+        color: color,
+        metalness: 0.89,
+        roughness: 0.28,
+        envMapIntensity: 0.45
+      });
+
+
+        }
+      });
+
+      // scale to scene
       const box = new THREE.Box3().setFromObject(object);
       const size = new THREE.Vector3();
       box.getSize(size);
@@ -27,14 +45,14 @@ class ModelLoader {
       const scale = targetSize / maxDim;
       object.scale.set(scale, scale, scale);
 
-      // CENTER
+      // center scene
       box.setFromObject(object);
       const center = new THREE.Vector3();
       box.getCenter(center);
       object.position.sub(center);
 
-      // POSITION OFFSET
-      object.position.set(
+      // positioning offset
+        object.position.set(
         object.position.x + position.x,
         object.position.y + position.y,
         object.position.z + position.z
@@ -46,6 +64,7 @@ class ModelLoader {
         this.models[name] = object;  // store for easy lookup
       }
       
+      // apply rotation setting if json mentions it
       if (rotation) {
       object.rotation.set(
         rotation.x || 0,
@@ -54,10 +73,10 @@ class ModelLoader {
       );
     }
       
-      // ADD TO SCENE
+      // add to the scene
       this.scene.add(object);
 
-      // OPTIONAL CALLBACK
+      // call back
       if (onLoad) onLoad(object);
     });
   }
@@ -75,6 +94,7 @@ const CAMERA_CONFIG = {
   fitOffset: 1.5,
 };
 
+// initialization and rendering
 init();
 render(); 
 
@@ -85,7 +105,8 @@ function init() {
   renderer = getRenderer();
   controls = getControls(camera, renderer);
   light = getLight(scene);
-
+  loader = new ModelLoader(scene);
+  setupHDR();
 }
 
 function getCamera() {
@@ -140,36 +161,106 @@ function fitCameraToScene(camera, scene, controls) {
 
 function getScene() {
   var scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x111111);
   return scene;
 }
+
 
 /**
  * Generate the light to be used in the scene.
  *  @param {obj} scene: the current scene object
  **/
 function getLight(scene) {
-  var light = new THREE.PointLight(0xffffff, 1, 0);
-  light.position.set(40, 70, 10);
 
-  var light2 = new THREE.PointLight(0xffffff, 1, 0);
-  light2.position.set(-50, -80, -20);
+  // ambient lighting
+  const ambient = new THREE.AmbientLight(0xffffff, 0.08);
+  scene.add(ambient);
 
-  scene.add(light);
-  scene.add(light2);
 
-  var ambientLight = new THREE.AmbientLight(0x111111);
-  scene.add(ambientLight);
+  // strong warm light from upper-right-front
+  const keyLight = new THREE.DirectionalLight(0xfff1d6, 5);
 
-  return light;
-  return light2;
+  keyLight.position.set(120, 140, 160);
+
+  keyLight.castShadow = true;
+
+  keyLight.shadow.mapSize.width = 4096;
+  keyLight.shadow.mapSize.height = 4096;
+
+  keyLight.shadow.camera.near = 1;
+  keyLight.shadow.camera.far = 600;
+
+  keyLight.shadow.camera.left = -200;
+  keyLight.shadow.camera.right = 200;
+  keyLight.shadow.camera.top = 200;
+  keyLight.shadow.camera.bottom = -200;
+
+  scene.add(keyLight);
+
+  // gives metal edge contrast
+  const fillLight = new THREE.DirectionalLight(0x9bbcff, 1.5);
+
+  fillLight.position.set(-120, 60, 80);
+
+  scene.add(fillLight);
+
+  // creates glowing metal edges
+  const rimLight = new THREE.DirectionalLight(0xffd6aa, 1.5);
+
+  rimLight.position.set(0, 120, -180);
+
+  scene.add(rimLight);
+
+  //spot light on clock face
+  const spotLight = new THREE.SpotLight(
+    0xffffff,
+    6,
+    500,
+    Math.PI / 7,
+    0.4,
+    2
+  );
+
+  spotLight.position.set(0, 70, 100);
+
+  spotLight.target.position.set(0, 0, -30);
+
+  spotLight.castShadow = true;
+
+  spotLight.shadow.mapSize.width = 2048;
+  spotLight.shadow.mapSize.height = 2048;
+
+  scene.add(spotLight);
+  scene.add(spotLight.target);
+
+  // lower gear glow effect
+  const lowerLight = new THREE.PointLight(0xffaa66, 10, 220);
+
+  lowerLight.position.set(0, -90, -20);
+
+  scene.add(lowerLight);
+
+  return {
+    ambient,
+    keyLight,
+    fillLight,
+    rimLight,
+    spotLight,
+    lowerLight
+  };
 }
 
 function getRenderer() {
   var renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.physicallyCorrectLights = true;
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 0.8;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   document.body.appendChild(renderer.domElement);
+
   return renderer;
 }
   //TrackBall controls
@@ -180,8 +271,53 @@ function getControls(camera, renderer) {
   return controls;
 } 
 
-const loader = new ModelLoader(scene);
+material = {
+  color: 0xb0b0b0,
+  metalness: 0.7,
+  roughness: 0.18
+}
 
+const metalMaterial = new THREE.MeshStandardMaterial(material);
+
+// creates realistic metal material
+function setupHDR() {
+
+  const pmremGenerator = new THREE.PMREMGenerator(renderer);
+
+  new THREE.RGBELoader()
+    .setPath('./hdr/')
+    .load('studio.hdr', function (texture) {
+
+      const envMap = pmremGenerator
+        .fromEquirectangular(texture)
+        .texture;
+
+      scene.environment = envMap;
+
+      texture.dispose();
+      pmremGenerator.dispose();
+    });
+}
+
+
+// floor to showcase shadow
+const floor = new THREE.Mesh(
+  new THREE.PlaneGeometry(320, 250),
+  new THREE.MeshStandardMaterial({
+    color: 0x222222,
+    roughness: 0.8,
+    metalness: 0
+  })
+  );
+
+  floor.rotation.x = -Math.PI / 2;
+  floor.position.y = -160;
+  floor.position.z = -120;
+  floor.receiveShadow = true;
+
+  scene.add(floor);
+
+  // json data fetch
   fetch('./models.json')
 
     .then(response => response.json())
@@ -193,21 +329,24 @@ const loader = new ModelLoader(scene);
           position: model.position,
           targetSize: model.scale,
           rotation: model.rotation,
-          copies: model.copies,
-          spacing: model.spacing,
+          color: model.color,
           onLoad: (obj) => {
             fitCameraToScene(camera, scene, controls);
 
-            if (model.copies) {
-            for (let i = 0; i < model.copies; i++) {
-              const clone = obj.clone();
+            // rotation speed
+            if (obj.name.startsWith("gear")) {
 
-              clone.position.x += i * (model.spacing || 0);
-              clone.position.y += model.offsetY || 20;
+              const gearNumber = parseInt(
+                obj.name.replace("gear", "")
+              );
 
-              scene.add(clone);
-          }
-        }
+              // alternate directions
+              const direction = gearNumber % 2 === 0 ? -1 : 1;
+
+              // bigger gears spin slower
+              obj.userData.rotationSpeed =
+                0.02 * direction * (1 / Math.sqrt(model.scale / 10));
+            }
 
             console.log(obj.name + " loaded");
           }
@@ -216,23 +355,52 @@ const loader = new ModelLoader(scene);
       });
     });
 
-console.log("FETCHING MODELS...");
+//console.log("FETCHING MODELS...");
+
 
 
 function render() {
+
   requestAnimationFrame(render);
 
-  // Rotate all pyramids
- /* pyramids.forEach(pyramid => {
-    pyramid.rotation.y += 0.005; // speed (smaller = slower)
-  }); */
+  // gear rotation
+  for (const name in loader.models) {
 
-  // Rotate toruses (in opposite directions)
-  /* if (toruses.length >= 2) {
-  toruses[0].rotation.z += 0.01;  // clockwise
-  toruses[1].rotation.z -= 0.02;  // counterclockwise
-  }*/
+    const gear = loader.models[name];
+    //
+    if (
+      gear &&
+      gear.name.startsWith("gear")
+    ) {
+
+      // top gears
+      if (gear.position.y > -20) {
+
+        gear.rotation.z +=
+          gear.userData.rotationSpeed;
+      }
+
+      // lower gears
+      else {
+
+        gear.rotation.z +=
+          gear.userData.rotationSpeed;
+      }
+    }
+      // clock hands
+      const minuteHand = loader.get("minuteh");
+      const hourHand = loader.get("hourh");
+
+      if (minuteHand) {
+        minuteHand.rotation.z += 0.001;
+      }
+
+      if (hourHand) {
+        hourHand.rotation.z -= 0.0003;
+      }
+  }
+
+  controls.update();
 
   renderer.render(scene, camera);
-  controls.update();
 }

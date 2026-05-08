@@ -4,9 +4,10 @@ This assignment involves using generative AI tools for coding assisstance and de
 
 ## This project includes:
 * JavaScript logic and control flow
-* Classes and objects
+* Classes
 * Arrays and iteration
-* User input (keyboard, mouse, or touch)
+* User input (mouse)
+    * Right click and drag mouse to turn camera, use scroll wheel to zoom in and out
 * Animations
 * Use of external assets (libraries, JSON, and OBJs)
 
